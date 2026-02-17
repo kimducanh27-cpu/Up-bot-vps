@@ -11,8 +11,8 @@ import { http, HttpRequest, HttpRequestMethod, HttpHeader } from "@minecraft/ser
 // ==================== CẤU HÌNH ====================
 
 const SECRET_KEY = "minecraft-discord-sync-2024";
-const BOT_URL = "http://stardust.pikamc.vn:25328/player-update";
-const CHAT_URL = "http://stardust.pikamc.vn:25328/chat";
+const BOT_URL = "http://129.150.38.255:8080/player-update";
+const CHAT_URL = "http://129.150.38.255:8080/chat";
 const UPDATE_INTERVAL_TICKS = 100; // 5 giây (20 ticks = 1 giây)
 // ==================== HỆ THỐNG ====================
 let lastPlayerList = [];
@@ -72,7 +72,7 @@ system.runInterval(() => {
 }, 1);
 
 system.runInterval(() => {
-    const BOT_URL = "http://stardust.pikamc.vn:25328/player-update";
+    const BOT_URL = "http://129.150.38.255:8080/player-update";
     tps = tickCount;
     tickCount = 0;
 }, 20);

@@ -1888,9 +1888,17 @@ const addonServer = http.createServer(async (req, res) => {
                     const channel = await fetchChannelSafe(CONFIG.CHANNEL_ID);
 
                     if (event === 'join') {
-                        if (channel) await channel.send({
-                            embeds: [new EmbedBuilder().setTitle(`<:Minecraft_World_Cube:1448905048284201000>${playerName} đã vào server`).setColor(0x18CB56)]
-                        }).catch(() => { });
+                        if (channel) {
+                            // Gửi tin nhắn có ping @here (ở cuối) + nội dung
+                            const joinMsg = await channel.send({
+                                content: `🟢 **${playerName}** đã vào server @here`
+                            }).catch(() => { });
+
+                            // Sửa lại để xóa @here (Ghost ping)
+                            if (joinMsg) await joinMsg.edit({
+                                content: `🟢 **${playerName}** đã vào server`
+                            }).catch(() => { });
+                        }
 
                         if (addonPlayerData.players.length > 0) updatePlayerDashboards(addonPlayerData.players, true);
 
@@ -1917,9 +1925,17 @@ const addonServer = http.createServer(async (req, res) => {
                         }
 
                     } else if (event === 'leave') {
-                        if (channel) await channel.send({
-                            embeds: [new EmbedBuilder().setTitle(`${playerName} đã thoát server<:Minecraft_World_Cube:1448905048284201000>`).setColor(0xD6049F)]
-                        }).catch(() => { });
+                        if (channel) {
+                            // Gửi tin nhắn có ping @here (ở cuối) + nội dung
+                            const leaveMsg = await channel.send({
+                                content: `🔴 **${playerName}** đã thoát server @here`
+                            }).catch(() => { });
+
+                            // Sửa lại để xóa @here (Ghost ping)
+                            if (leaveMsg) await leaveMsg.edit({
+                                content: `🔴 **${playerName}** đã thoát server`
+                            }).catch(() => { });
+                        }
 
                         markPlayerOffline(playerName);
 
