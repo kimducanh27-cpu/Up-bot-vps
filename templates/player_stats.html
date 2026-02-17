@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: transparent;
+        }
+        
+        .card {
+            width: 420px;
+            background: linear-gradient(135deg, #2C2F33 0%, #23272A 100%);
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid #57F287;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .player-info h1 {
+            color: #FFFFFF;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .player-info .subtitle {
+            color: #B9BBBE;
+            font-size: 13px;
+        }
+        
+        .skin {
+            width: 55px;
+            height: 55px;
+            border-radius: 8px;
+            border: 2px solid #5865F2;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, #40444B 0%, transparent 100%);
+            margin: 12px 0;
+        }
+        
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .section {
+            flex: 1;
+        }
+        
+        .section-title {
+            color: #B9BBBE;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .section-content {
+            color: #DCDDDE;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .hp-bar {
+            display: flex;
+            gap: 2px;
+            margin-top: 4px;
+        }
+        
+        .hp-heart {
+            width: 14px;
+            height: 14px;
+            background: #ED4245;
+            border-radius: 50%;
+        }
+        
+        .hp-heart.empty {
+            background: #4F545C;
+        }
+        
+        .inventory {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        
+        .inv-slot {
+            width: 38px;
+            height: 38px;
+            background: #202225;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid #40444B;
+        }
+        
+        .inv-slot img {
+            width: 28px;
+            height: 28px;
+            image-rendering: pixelated;
+        }
+        
+        .inv-slot .count {
+            position: absolute;
+            bottom: 2px;
+            right: 4px;
+            color: #FFF;
+            font-size: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px #000;
+        }
+        
+        .slot-count {
+            color: #72767D;
+            font-size: 11px;
+            margin-left: auto;
+        }
+        
+        .stats-row {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #DCDDDE;
+            font-size: 13px;
+        }
+        
+        .pets-container {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .pet-icon {
+            width: 40px;
+            height: 40px;
+            background: #36393F;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .footer {
+            color: #72767D;
+            font-size: 10px;
+            margin-top: 12px;
+            text-align: left;
+        }
+        
+        .label {
+            color: #72767D;
+            font-size: 12px;
+        }
+        
+        .value {
+            color: #FFFFFF;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- Header -->
+        <div class="header">
+            <div class="player-info">
+                <h1 id="playerName">PlayerName</h1>
+                <div class="subtitle" id="subtitle">overworld • Day</div>
+            </div>
+            <img class="skin" id="skin" src="" alt="skin">
+        </div>
+        
+        <!-- Status & Location -->
+        <div class="row">
+            <div class="section">
+                <div class="section-title">💚 Trạng Thái</div>
+                <div class="section-content">
+                    <div><span class="label">HP:</span> <span class="value" id="hp">20/20</span></div>
+                    <div><span class="label">Weather:</span> <span class="value" id="weather">Clear</span></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">📍 Vị Trí</div>
+                <div class="section-content">
+                    <div><span class="value" id="coords">X: 0 Y: 64 Z: 0</span></div>
+                    <div><span class="label">Biome:</span> <span class="value" id="biome">plains</span></div>
+                    <div id="structureRow" style="display:none"><span class="label">Khu:</span> <span class="value" id="structure"></span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- Inventory -->
+        <div class="section">
+            <div class="section-title">🎒 Túi Đồ <span class="slot-count" id="slotCount">0 slots</span></div>
+            <div class="inventory" id="inventory">
+                <!-- Slots will be inserted here -->
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- Stats & Pets -->
+        <div class="row">
+            <div class="section">
+                <div class="section-title">📊 Thống Kê</div>
+                <div class="section-content">
+                    <div class="stat-item">⛏️ <span id="blocks">0</span> Blocks</div>
+                    <div class="stat-item">⚔️ <span id="mobs">0</span> Mobs</div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">🐾 Thú Cưng</div>
+                <div class="pets-container" id="pets">
+                    <span style="color: #72767D; font-size: 13px;">Không có</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer" id="footer">Updated: 00:00:00</div>
+    </div>
+    
+    <script>
+        // Data will be injected by puppeteer
+        const data = window.__PLAYER_DATA__ || {};
+        
+        if (data.name) {
+            document.getElementById('playerName').textContent = data.name;
+            document.getElementById('subtitle').textContent = `${data.biome || 'overworld'} • ${data.timeOfDay || 'Day'}`;
+            document.getElementById('skin').src = `https://mc-heads.net/avatar/${encodeURIComponent(data.name)}/55`;
+            document.getElementById('hp').textContent = `${data.health || 20}/20`;
+            document.getElementById('weather').textContent = data.weather || 'Clear';
+            document.getElementById('coords').textContent = `X: ${data.x || 0}  Y: ${data.y || 64}  Z: ${data.z || 0}`;
+            document.getElementById('biome').textContent = data.biome || 'plains';
+            
+            if (data.structure) {
+                document.getElementById('structureRow').style.display = 'block';
+                document.getElementById('structure').textContent = data.structure;
+            }
+            
+            document.getElementById('slotCount').textContent = `${(data.inventory || []).length} slots`;
+            document.getElementById('blocks').textContent = (data.blocksBroken || 0).toLocaleString();
+            document.getElementById('mobs').textContent = (data.mobsKilled || 0).toLocaleString();
+            document.getElementById('footer').textContent = `Updated: ${data.timestamp || new Date().toLocaleTimeString('vi-VN')}`;
+            
+            // Render inventory slots
+            const invContainer = document.getElementById('inventory');
+            invContainer.innerHTML = '';
+            const inv = data.inventory || [];
+            for (let i = 0; i < 8; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'inv-slot';
+                if (inv[i]) {
+                    const itemName = (inv[i].name || inv[i].id || '').replace('minecraft:', '');
+                    const img = document.createElement('img');
+                    img.src = `https://minecraft-api.vercel.app/images/items/${itemName}.png`;
+                    img.onerror = () => { img.style.display = 'none'; };
+                    slot.appendChild(img);
+                    
+                    const count = inv[i].amount || inv[i].count || 1;
+                    if (count > 1) {
+                        const countEl = document.createElement('span');
+                        countEl.className = 'count';
+                        countEl.textContent = count;
+                        slot.appendChild(countEl);
+                    }
+                }
+                invContainer.appendChild(slot);
+            }
+            
+            // Render pets
+            const petsContainer = document.getElementById('pets');
+            const pets = data.pets || [];
+            if (pets.length > 0) {
+                petsContainer.innerHTML = '';
+                const petEmojis = { wolf: '🐺', cat: '🐱', horse: '🐴', parrot: '🦜', bee: '🐝' };
+                pets.slice(0, 4).forEach(pet => {
+                    const petEl = document.createElement('div');
+                    petEl.className = 'pet-icon';
+                    petEl.textContent = petEmojis[pet.type] || '🐾';
+                    petsContainer.appendChild(petEl);
+                });
+                const countEl = document.createElement('span');
+                countEl.style.cssText = 'color: #72767D; font-size: 11px; align-self: flex-end;';
+                countEl.textContent = `${pets.length} pets`;
+                petsContainer.appendChild(countEl);
+            }
+        }
+    </script>
+</body>
+</html>

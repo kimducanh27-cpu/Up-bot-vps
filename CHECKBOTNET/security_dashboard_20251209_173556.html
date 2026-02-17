@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOTNET INCIDENT COMMAND CENTER</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@400;700&display=swap');
+        :root {
+            --bg-color: #0a0a0a;
+            --panel-bg: #1a1a1a;
+            --border-color: #333;
+            --text-color: #eee;
+            --critical-red: #dc3545;
+            --high-orange: #fd7e14;
+            --medium-yellow: #ffc107;
+            --low-green: #28a745;
+            --info-blue: #007bff;
+            --glow-color-critical: rgba(220, 53, 69, 0.7);
+            --glow-color-high: rgba(253, 126, 20, 0.7);
+            --glow-color-medium: rgba(255, 193, 7, 0.7);
+            --glow-color-info: rgba(0, 123, 255, 0.7);
+            --font-mono: 'Roboto Mono', monospace;
+            --font-header: 'Orbitron', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-x: hidden;
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--panel-bg);
+            padding: 15px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px var(--glow-color-critical);
+            animation: pulse-border-critical 2s infinite alternate;
+        }
+
+        .dashboard-header .logo {
+            font-size: 2.5em;
+            color: var(--critical-red);
+            margin-right: 15px;
+            animation: blink 1s infinite;
+        }
+
+        .dashboard-header h1 {
+            font-family: var(--font-header);
+            font-size: 2.2em;
+            margin: 0;
+            color: var(--text-color);
+            text-shadow: 0 0 8px var(--critical-red);
+        }
+
+        .header-info {
+            text-align: right;
+            font-size: 0.9em;
+        }
+
+        .status-indicator {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-critical {
+            background-color: var(--critical-red);
+            color: white;
+            animation: pulse 1.5s infinite alternate;
+        }
+        .status-all-clear {
+            background-color: var(--low-green);
+            color: white;
+            box-shadow: none;
+            animation: none;
+        }
+
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 20px;
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        .panel-critical {
+            box-shadow: 0 0 15px var(--glow-color-critical);
+            border-color: var(--critical-red);
+            animation: pulse-border-critical 2s infinite alternate;
+        }
+        .panel-high {
+            box-shadow: 0 0 12px var(--glow-color-high);
+            border-color: var(--high-orange);
+        }
+        .panel-medium {
+            box-shadow: 0 0 10px var(--glow-color-medium);
+            border-color: var(--medium-yellow);
+        }
+        .panel-info {
+            box-shadow: 0 0 8px var(--glow-color-info);
+            border-color: var(--info-blue);
+        }
+
+        h2 {
+            font-family: var(--font-header);
+            color: var(--info-blue);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .alert-card {
+            background-color: #2a0000;
+            border-left: 5px solid var(--critical-red);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(220, 53, 69, 0.6);
+            position: relative;
+            animation: pulse-light 2s infinite alternate;
+        }
+        .alert-card.high {
+            background-color: #2a1a00;
+            border-left-color: var(--high-orange);
+            box-shadow: 0 0 8px rgba(253, 126, 20, 0.6);
+            animation: pulse-light-orange 2s infinite alternate;
+        }
+        .alert-card.medium {
+            background-color: #2a2a00;
+            border-left-color: var(--medium-yellow);
+            box-shadow: 0 0 6px rgba(255, 193, 7, 0.6);
+            animation: none; /* No pulse for medium */
+        }
+
+        .alert-card .severity-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8em;
+            color: var(--critical-red);
+            filter: drop-shadow(0 0 3px var(--critical-red));
+        }
+        .alert-card.high .severity-icon { color: var(--high-orange); filter: drop-shadow(0 0 3px var(--high-orange)); }
+        .alert-card.medium .severity-icon { color: var(--medium-yellow); filter: drop-shadow(0 0 3px var(--medium-yellow)); }
+
+
+        .alert-card h3 {
+            color: var(--critical-red);
+            margin: 0 0 5px 0;
+            font-size: 1.3em;
+            text-transform: uppercase;
+        }
+        .alert-card.high h3 { color: var(--high-orange); }
+        .alert-card.medium h3 { color: var(--medium-yellow); }
+
+        .alert-card p {
+            margin: 0 0 8px 0;
+            font-size: 0.95em;
+        }
+
+        .alert-card .meta-info {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .action-buttons button {
+            background-color: var(--info-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-right: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .action-buttons button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .action-buttons .critical-btn {
+            background-color: var(--critical-red);
+        }
+        .action-buttons .critical-btn:hover {
+            background-color: #c82333;
+        }
+
+        .incident-status-card {
+            background-color: #222;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .incident-status-card.critical .value { color: var(--critical-red); text-shadow: 0 0 5px var(--critical-red); }
+        .incident-status-card.active .value { color: var(--high-orange); text-shadow: 0 0 5px var(--high-orange); }
+        .incident-status-card.affected .value { color: var(--medium-yellow); text-shadow: 0 0 5px var(--medium-yellow); }
+        .incident-status-card.escalated .value { color: var(--info-blue); text-shadow: 0 0 5px var(--info-blue); }
+
+        .incident-status-card .label {
+            font-size: 1em;
+            color: #ccc;
+            text-transform: uppercase;
+        }
+
+        .incident-status-card .value {
+            font-family: var(--font-header);
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .command-console-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .command-console-buttons button {
+            background-color: var(--info-blue);
+            color: white;
+            border: none;
+            padding: 15px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: var(--font-header);
+            font-size: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 0 5px var(--glow-color-info);
+        }
+        .command-console-buttons button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px var(--glow-color-info);
+        }
+        .command-console-buttons button i {
+            font-size: 1.5em;
+        }
+
+        .threat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .threat-table th, .threat-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+            font-size: 0.85em;
+        }
+
+        .threat-table th {
+            background-color: #222;
+            color: var(--info-blue);
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: var(--font-header);
+        }
+
+        .threat-table tr:nth-child(even) {
+            background-color: #121212;
+        }
+
+        .threat-table tr:hover {
+            background-color: #222;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge.critical { background-color: var(--critical-red); color: white; }
+        .badge.high { background-color: var(--high-orange); color: white; }
+        .badge.medium { background-color: var(--medium-yellow); color: #333; }
+        .badge.low { background-color: var(--low-green); color: white; }
+        .badge.active { background-color: var(--critical-red); color: white; }
+        .badge.investigating { background-color: var(--medium-yellow); color: #333; }
+        .badge.new { background-color: var(--info-blue); color: white; }
+        .badge.contained { background-color: var(--low-green); color: white; }
+
+        .network-visualizer pre {
+            background-color: #121212;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            background-color: #1c1c1c;
+            border-left: 3px solid var(--low-green);
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .recommendations li.critical { border-left-color: var(--critical-red); }
+        .recommendations li.high { border-left-color: var(--high-orange); }
+        .recommendations li.medium { border-left-color: var(--medium-yellow); }
+
+        /* Grid Area Definitions */
+        .primary-threat-monitor { grid-area: 1 / 1 / 3 / 2; } /* Left, spans 2 rows */
+        .incident-status { grid-area: 1 / 2 / 2 / 3; } /* Right top */
+        .command-console { grid-area: 2 / 2 / 3 / 3; } /* Right middle */
+        .active-threat-logs { grid-area: 3 / 1 / 4 / 2; } /* Left bottom */
+        .network-visualizer { grid-area: 3 / 2 / 4 / 3; } /* Right bottom */
+        .recommendations-panel { grid-area: 4 / 1 / 5 / 3; } /* Full width at bottom */
+
+        /* Keyframe Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes pulse-light {
+            0% { box-shadow: 0 0 5px rgba(220, 53, 69, 0.6); }
+            50% { box-shadow: 0 0 15px rgba(220, 53, 69, 0.9); }
+            100% { box-shadow: 0 0 5px rgba(220, 53, 69, 0.6); }
+        }
+        @keyframes pulse-light-orange {
+            0% { box-shadow: 0 0 5px rgba(253, 126, 20, 0.6); }
+            50% { box-shadow: 0 0 15px rgba(253, 126, 20, 0.9); }
+            100% { box-shadow: 0 0 5px rgba(253, 126, 20, 0.6); }
+        }
+        @keyframes pulse-border-critical {
+            0% { border-color: #550000; box-shadow: 0 0 10px rgba(220, 53, 69, 0.4); }
+            50% { border-color: var(--critical-red); box-shadow: 0 0 20px rgba(220, 53, 69, 0.9); }
+            100% { border-color: #550000; box-shadow: 0 0 10px rgba(220, 53, 69, 0.4); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Font Awesome for icons */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .primary-threat-monitor, .incident-status, .command-console, .active-threat-logs, .network-visualizer, .recommendations-panel {
+                grid-area: auto; /* Reset grid area for single column layout */
+            }
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .header-info {
+                text-align: center;
+            }
+            .command-console-buttons {
+                grid-template-columns: 1fr;
+            }
+            .panel {
+                padding: 15px;
+            }
+            .alert-card {
+                padding: 10px;
+            }
+            .threat-table th, .threat-table td {
+                padding: 8px;
+                font-size: 0.75em;
+            }
+            .threat-table th:nth-child(4), .threat-table td:nth-child(4), /* Target */
+            .threat-table th:nth-child(6), .threat-table td:nth-child(6) { /* Action */
+                display: none; /* Hide less critical columns on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-header panel-critical">
+        <div class="logo"><i class="fas fa-skull-crossbones"></i></div>
+        <h1>BOTNET INCIDENT COMMAND CENTER</h1>
+        <div class="header-info">
+            Scan Time: 2025-12-09 17:35:00<br>
+            <span class="status-indicator status-critical">CRITICAL THREAT LEVEL</span>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <div class="panel primary-threat-monitor panel-critical">
+            <h2><i class="fas fa-exclamation-triangle"></i> PRIMARY THREAT MONITOR</h2>
+            
+            <div class="alert-card critical">
+                <i class="fas fa-bug severity-icon"></i>
+                <h3>CRITICAL ALERT: Unknown Executable 'Antigravity.exe'</h3>
+                <p><strong>Description:</strong> Detected a highly suspicious executable named 'Antigravity.exe' running from a non-standard directory (<code>D:\TEST\Antigravity\</code>). This process is actively listening on multiple high-numbered, non-standard ports (9101, 61230), indicating potential Command and Control (C2) activity or backdoor presence. Its unusual name and location are strong indicators of malware.</p>
+                <div class="meta-info">
+                    PID: 6644, 10224, 9808, 12340 | Source: Process Inspection, Network Analysis
+                </div>
+                <div class="action-buttons">
+                    <button class="critical-btn"><i class="fas fa-shield-alt"></i> ISOLATE & ANALYZE</button>
+                    <button class="critical-btn"><i class="fas fa-lock"></i> ACTIVATE LOCKDOWN</button>
+                </div>
+            </div>
+
+            <div class="alert-card high">
+                <i class="fas fa-network-wired severity-icon"></i>
+                <h3>HIGH ALERT: Suspicious 'language_server_windows_x64.exe' Network Activity</h3>
+                <p><strong>Description:</strong> The process 'language_server_windows_x64.exe' (PID 8964) is making numerous outbound connections to various cloud-based IPs (Google, AWS) on port 443. While this process can be legitimate (e.g., for IDEs), its origin path is not explicitly listed in detail and it shows "Can not obtain ownership information" in the raw log, which, in conjunction with the detected 'Antigravity.exe', raises significant suspicion for data exfiltration or secondary C2 channels.</p>
+                <div class="meta-info">
+                    PID: 8964 | Target IPs: 34.54.84.110, [2404:6800:4003:c06::451], [2404:6800:4003:c03::5f], [2001:4860:4802:36::223] | Source: Network Analysis, Process Inspection
+                </div>
+                <div class="action-buttons">
+                    <button><i class="fas fa-search"></i> INVESTIGATE PROCESS</button>
+                    <button><i class="fas fa-times-circle"></i> BLOCK IPs</button>
+                </div>
+            </div>
+
+            <div class="alert-card medium">
+                <i class="fas fa-globe severity-icon"></i>
+                <h3>MEDIUM ALERT: Uncommon External Connection via Chrome</h3>
+                <p><strong>Description:</strong> An established connection from 'chrome.exe' (PID 10708) to <code>45.117.164.201:8080</code> was identified. Port 8080 is often used for HTTP proxy services, and connecting to an unfamiliar IP on this port from a browser could indicate a compromised browser, proxy settings manipulation, or unexpected user activity. Review user browsing history and Chrome extensions.</p>
+                <div class="meta-info">
+                    PID: 10708 | Target IP: 45.117.164.201:8080 | Source: Network Analysis
+                </div>
+                <div class="action-buttons">
+                    <button><i class="fas fa-history"></i> REVIEW BROWSER LOGS</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel incident-status panel-high">
+            <h2><i class="fas fa-chart-line"></i> INCIDENT STATUS</h2>
+            <div class="incident-status-card critical">
+                <span class="label">Critical Alerts</span>
+                <span class="value">1</span>
+            </div>
+            <div class="incident-status-card active">
+                <span class="label">Active Threats</span>
+                <span class="value">2</span>
+            </div>
+            <div class="incident-status-card affected">
+                <span class="label">Affected Hosts</span>
+                <span class="value">1</span>
+            </div>
+            <div class="incident-status-card escalated">
+                <span class="label">Escalated Cases</span>
+                <span class="value">1</span>
+            </div>
+        </div>
+
+        <div class="panel command-console panel-info">
+            <h2><i class="fas fa-terminal"></i> COMMAND CONSOLE</h2>
+            <div class="command-console-buttons">
+                <button><i class="fas fa-box"></i> CONTAIN</button>
+                <button><i class="fas fa-flask"></i> ANALYZE</button>
+                <button><i class="fas fa-unlink"></i> ISOLATE</button>
+                <button><i class="fas fa-medkit"></i> REMEDIATE</button>
+            </div>
+        </div>
+
+        <div class="panel active-threat-logs panel-high">
+            <h2><i class="fas fa-list-alt"></i> ACTIVE THREAT LOGS</h2>
+            <table class="threat-table">
+                <thead>
+                    <tr>
+                        <th>THREAT ID</th>
+                        <th>SEVERITY</th>
+                        <th>STATUS</th>
+                        <th>TARGET</th>
+                        <th>DETECTED</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>THT001</td>
+                        <td><span class="badge critical">CRITICAL</span></td>
+                        <td><span class="badge active">ACTIVE</span></td>
+                        <td>Antigravity.exe (PIDs 6644, 10224, 9808, 12340)</td>
+                        <td>Network/Process</td>
+                        <td>Requires Immediate Action</td>
+                    </tr>
+                    <tr>
+                        <td>THT002</td>
+                        <td><span class="badge high">HIGH</span></td>
+                        <td><span class="badge investigating">INVESTIGATING</span></td>
+                        <td>language_server_windows_x64.exe (PID 8964)</td>
+                        <td>Network/Process</td>
+                        <td>Analyze further, block suspicious IPs</td>
+                    </tr>
+                    <tr>
+                        <td>THT003</td>
+                        <td><span class="badge medium">MEDIUM</span></td>
+                        <td><span class="badge new">NEW</span></td>
+                        <td>chrome.exe (PID 10708) -> 45.117.164.201:8080</td>
+                        <td>Network</td>
+                        <td>User/Browser Audit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel network-visualizer panel-info">
+            <h2><i class="fas fa-globe-americas"></i> NETWORK VISUALIZER (Suspicious Connections)</h2>
+            <pre>
+<strong>CRITICAL: Listening Ports from D:\TEST\Antigravity\Antigravity.exe</strong>
+    PID 6644: 0.0.0.0:9101 (LISTENING)
+    PID 6644: 0.0.0.0:61230 (LISTENING)
+
+<strong>HIGH: Outbound Connections from language_server_windows_x64.exe</strong>
+    PID 8964: 192.168.1.4:62141 -> 34.54.84.110:443 (ESTABLISHED)
+    PID 8964: [2402:800:63a6:806c:d939:d3d6:1814:b0c6]:62127 -> [2404:6800:4003:c06::451]:443 (ESTABLISHED)
+    PID 8964: [2402:800:63a6:806c:d939:d3d6:1814:b0c6]:62128 -> [2404:6800:4003:c06::451]:443 (ESTABLISHED)
+    PID 8964: [2402:800:63a6:806c:d939:d3d6:1814:b0c6]:62129 -> [2404:6800:4003:c03::5f]:443 (ESTABLISHED)
+    PID 8964: [2402:800:63a6:806c:d939:d3d6:1814:b0c6]:62137 -> [2001:4860:4802:36::223]:443 (ESTABLISHED)
+    Multiple TIME_WAIT connections to 34.54.84.110:443
+
+<strong>MEDIUM: Outbound Connection from chrome.exe</strong>
+    PID 10708: 192.168.1.4:52497 -> 45.117.164.201:8080 (ESTABLISHED)
+            </pre>
+        </div>
+
+        <div class="panel recommendations-panel panel-info">
+            <h2><i class="fas fa-clipboard-list"></i> RECOMMENDATIONS</h2>
+            <ul>
+                <li class="critical"><strong>Immediate System Quarantine:</strong> Disconnect the affected host from the network immediately to prevent further spread or data exfiltration.</li>
+                <li class="critical"><strong>Terminate Antigravity.exe:</strong> End all instances of <code>Antigravity.exe</code> processes (PIDs 6644, 10224, 9808, 12340).</li>
+                <li class="critical"><strong>Delete Antigravity.exe:</strong> Remove the executable file <code>D:\TEST\Antigravity\Antigravity.exe</code> and its related crashpad directories.</li>
+                <li class="high"><strong>Investigate language_server_windows_x64.exe:</strong> Verify the legitimacy and origin of <code>language_server_windows_x64.exe</code>. If it's not a known, trusted application (e.g., part of a developer IDE), terminate it and investigate its persistence mechanisms.</li>
+                <li class="high"><strong>Block Suspicious IPs/Ports:</strong> Implement firewall rules to block outbound connections to 45.117.164.201:8080 and any C2 IPs identified with Antigravity.exe. Block non-standard listening ports 9101 and 61230.</li>
+                <li class="medium"><strong>Full System Scan:</strong> Perform a deep scan with updated antivirus/anti-malware software.</li>
+                <li class="medium"><strong>Review User Activity:</strong> Investigate Administrator's recent activities, especially downloads or suspicious browser usage, which might explain the <code>D:\TEST\Antigravity\</code> folder.</li>
+                <li class="low"><strong>Check Startup Locations:</strong> Inspect common persistence mechanisms (Registry Run keys, Scheduled Tasks, Services) for any entries related to Antigravity.exe or language_server_windows_x64.exe.</li>
+                <li class="low"><strong>Reset Credentials:</strong> Force a password reset for the 'Administrator' account and other critical accounts if compromise is suspected.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

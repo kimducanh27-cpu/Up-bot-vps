@@ -1,0 +1,178 @@
+{
+  "ducanh1327": {
+    "totalBlocksBroken": 8,
+    "totalBlocksPlaced": 8,
+    "totalMobsKilled": 1,
+    "blocksBroken": {
+      "cobblestone": 2,
+      "dirt": 8
+    },
+    "blocksPlaced": {
+      "cobblestone": 2,
+      "dirt": 8
+    },
+    "mobsKilled": {
+      "zombie": 1
+    },
+    "playTime": 31877,
+    "lastSeen": 1771186986955,
+    "firstJoin": 1765195742693,
+    "distanceTraveled": 16584.11493620563
+  },
+  "Dat231207": {
+    "totalBlocksBroken": 569,
+    "totalBlocksPlaced": 139,
+    "totalMobsKilled": 54,
+    "blocksBroken": {
+      "deepslate_gold_ore": 8,
+      "deepslate": 92,
+      "deepslate_iron_ore": 58,
+      "tuff": 6,
+      "lit_deepslate_redstone_ore": 13,
+      "cobblestone": 2,
+      "deepslate_diamond_ore": 5,
+      "deepslate_lapis_ore": 12,
+      "iron_ore": 3,
+      "torch": 1,
+      "furnace": 1,
+      "dirt": 1,
+      "calcite": 2,
+      "amethyst_block": 3,
+      "small_amethyst_bud": 1,
+      "smooth_basalt": 1,
+      "stone": 39,
+      "andesite": 8,
+      "granite": 4,
+      "reeds": 24,
+      "coal_ore": 40,
+      "wheat": 18,
+      "vine": 1,
+      "oak_log": 9,
+      "leaf_litter": 1,
+      "short_grass": 4,
+      "oak_leaves": 5,
+      "netherrack": 177,
+      "ancient_debris": 2,
+      "magma": 4,
+      "nether_gold_ore": 23,
+      "quartz_ore": 1
+    },
+    "blocksPlaced": {
+      "torch": 78,
+      "tuff": 5,
+      "cobblestone": 2,
+      "crafting_table": 1,
+      "furnace": 2,
+      "dirt": 1,
+      "cobbled_deepslate": 25,
+      "sweet_berry_bush": 1,
+      "wheat": 15,
+      "bookshelf": 6,
+      "bed": 1,
+      "netherrack": 2
+    },
+    "mobsKilled": {
+      "slime": 20,
+      "zombie": 13,
+      "spider": 1,
+      "skeleton": 2,
+      "cow": 18
+    },
+    "playTime": 10725,
+    "lastSeen": 1771176078296,
+    "firstJoin": 1770700991272,
+    "distanceTraveled": 19403.327363279077
+  },
+  "EightConch6709": {
+    "totalBlocksBroken": 1573,
+    "totalBlocksPlaced": 277,
+    "totalMobsKilled": 58,
+    "blocksBroken": {
+      "glowstone": 50,
+      "oak_log": 1,
+      "quartz_ore": 118,
+      "crimson_nylium": 5,
+      "nether_gold_ore": 8,
+      "netherrack": 1287,
+      "oak_planks": 1,
+      "warped_nylium": 1,
+      "crafting_table": 1,
+      "nether_wart_block": 1,
+      "crimson_fungus": 1,
+      "sweet_berry_bush": 1,
+      "leaf_litter": 4,
+      "bush": 1,
+      "iron_ore": 9,
+      "stone": 15,
+      "diorite": 2,
+      "andesite": 5,
+      "coal_ore": 4,
+      "copper_ore": 1,
+      "lit_deepslate_redstone_ore": 8,
+      "tuff": 6,
+      "cobblestone": 3,
+      "deepslate": 21,
+      "deepslate_gold_ore": 5,
+      "deepslate_iron_ore": 7,
+      "deepslate_diamond_ore": 7
+    },
+    "blocksPlaced": {
+      "oak_log": 5,
+      "oak_planks": 3,
+      "netherrack": 126,
+      "torch": 105,
+      "crafting_table": 2,
+      "leaf_litter": 3,
+      "sweet_berry_bush": 1,
+      "cobblestone": 30,
+      "andesite": 2
+    },
+    "mobsKilled": {
+      "piglin": 16,
+      "ghast": 3,
+      "hoglin": 3,
+      "magma_cube": 12,
+      "skeleton": 5,
+      "witch": 1,
+      "zombie": 13,
+      "slime": 1,
+      "spider": 3,
+      "enderman": 1
+    },
+    "playTime": 10655,
+    "lastSeen": 1771177267089,
+    "firstJoin": 1770727755523,
+    "distanceTraveled": 12761.294189227323
+  },
+  "Huy the end": {
+    "totalBlocksBroken": 1112,
+    "totalBlocksPlaced": 109,
+    "totalMobsKilled": 2,
+    "blocksBroken": {
+      "dirt": 12,
+      "reeds": 8,
+      "grass_block": 27,
+      "short_grass": 9,
+      "netherrack": 956,
+      "nether_wart_block": 3,
+      "spruce_slab": 2,
+      "sweet_berry_bush": 52,
+      "wheat": 42,
+      "crafting_table": 1
+    },
+    "blocksPlaced": {
+      "reeds": 16,
+      "netherrack": 28,
+      "spruce_slab": 1,
+      "wheat": 50,
+      "dirt": 13,
+      "crafting_table": 1
+    },
+    "mobsKilled": {
+      "zombie": 2
+    },
+    "playTime": 0,
+    "lastSeen": 1771168395221,
+    "firstJoin": 1770729325572
+  }
+}

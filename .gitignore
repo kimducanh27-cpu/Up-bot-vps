@@ -1,0 +1,4 @@
+node_modules/
+*.zip
+FILE THỪA/
+.env

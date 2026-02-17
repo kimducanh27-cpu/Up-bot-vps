@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm Tra Botnet - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0d1117;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: #161b22;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #30363d;
+        }
+
+        .header h1 {
+            color: #58a6ff;
+            font-size: 1.5em;
+        }
+
+        .status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .status.safe {
+            background: #238636;
+        }
+
+        .status.danger {
+            background: #da3633;
+            animation: pulse 1s infinite;
+        }
+
+        .status.scanning {
+            background: #1f6feb;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-primary {
+            background: #238636;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #da3633;
+            color: white;
+        }
+
+        .btn-info {
+            background: #1f6feb;
+            color: white;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #161b22;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #30363d;
+        }
+
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .stat-card .label {
+            color: #8b949e;
+            margin-top: 5px;
+        }
+
+        .stat-card.blue .value {
+            color: #58a6ff;
+        }
+
+        .stat-card.green .value {
+            color: #3fb950;
+        }
+
+        .stat-card.yellow .value {
+            color: #d29922;
+        }
+
+        .stat-card.red .value {
+            color: #f85149;
+        }
+
+        .panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: #161b22;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #30363d;
+        }
+
+        .panel h2 {
+            color: #58a6ff;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .threat-card {
+            background: #0d1117;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .threat-card.safe {
+            border-color: #3fb950;
+        }
+
+        .threat-card.warning {
+            border-color: #d29922;
+        }
+
+        .threat-card.danger {
+            border-color: #f85149;
+            background: #1a0000;
+        }
+
+        .threat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .threat-name {
+            font-weight: bold;
+        }
+
+        .threat-card.danger .threat-name {
+            color: #f85149;
+        }
+
+        .threat-card.warning .threat-name {
+            color: #d29922;
+        }
+
+        .threat-card.safe .threat-name {
+            color: #3fb950;
+        }
+
+        .threat-info {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+
+        .threat-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-kill {
+            background: #da3633;
+            color: white;
+        }
+
+        .btn-block {
+            background: #d29922;
+            color: white;
+        }
+
+        .btn-small:hover {
+            opacity: 0.8;
+        }
+
+        .info-btn {
+            background: #1f6feb;
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: #8b949e;
+            padding: 30px;
+        }
+
+        .list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 800px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .panels {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🛡️ KIỂM TRA BOTNET</h1>
+        <div id="status" class="status safe">✅ AN TOÀN</div>
+    </div>
+
+    <div class="controls">
+        <button id="btnScan" class="btn btn-primary" onclick="quetHeThong()">🔍 QUÉT HỆ THỐNG</button>
+        <button id="btnAI" class="btn btn-info" onclick="phanTichAI()" disabled>🤖 PHÂN TÍCH AI</button>
+        <button id="btnKillAll" class="btn btn-danger" onclick="dietTatCa()" disabled>💀 DIỆT TẤT CẢ</button>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card blue">
+            <div class="value" id="statConn">0</div>
+            <div class="label">Kết Nối Mạng</div>
+        </div>
+        <div class="stat-card green">
+            <div class="value" id="statProc">0</div>
+            <div class="label">Tiến Trình</div>
+        </div>
+        <div class="stat-card yellow">
+            <div class="value" id="statWarn">0</div>
+            <div class="label">Cảnh Báo</div>
+        </div>
+        <div class="stat-card red">
+            <div class="value" id="statDanger">0</div>
+            <div class="label">Nguy Hiểm</div>
+        </div>
+    </div>
+
+    <div class="panels">
+        <div class="panel">
+            <h2>🌐 KẾT NỐI MẠNG</h2>
+            <div id="connList" class="list">
+                <div class="empty-msg">Nhấn "QUÉT HỆ THỐNG" để bắt đầu</div>
+            </div>
+        </div>
+        <div class="panel">
+            <h2>⚙️ TIẾN TRÌNH ĐÁNG NGỜ</h2>
+            <div id="procList" class="list">
+                <div class="empty-msg">Nhấn "QUÉT HỆ THỐNG" để bắt đầu</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let duLieu = null;
+
+        // CẬP NHẬT TRẠNG THÁI
+        function capNhatStatus(loai, text) {
+            const el = document.getElementById('status');
+            el.className = 'status ' + loai;
+            el.textContent = text;
+        }
+
+        // QUÉT HỆ THỐNG
+        async function quetHeThong() {
+            const btn = document.getElementById('btnScan');
+            btn.disabled = true;
+            btn.textContent = '⏳ Đang quét...';
+            capNhatStatus('scanning', '🔄 ĐANG QUÉT...');
+
+            try {
+                // Gọi API quét
+                const res = await fetch('/api/scan', { method: 'POST' });
+                const data = await res.json();
+                console.log('Kết quả quét:', data);
+
+                if (data.success) {
+                    // Cập nhật số liệu
+                    document.getElementById('statConn').textContent = data.stats.connections;
+                    document.getElementById('statProc').textContent = data.stats.processes;
+                    document.getElementById('statWarn').textContent = data.stats.warnings;
+                    document.getElementById('statDanger').textContent = data.stats.dangers;
+
+                    // Lấy chi tiết
+                    const res2 = await fetch('/api/results');
+                    duLieu = await res2.json();
+                    console.log('Chi tiết:', duLieu);
+
+                    // Hiển thị danh sách
+                    hienThiKetNoi(duLieu.connections);
+                    hienThiTienTrinh(duLieu.processes);
+
+                    // Bật nút
+                    document.getElementById('btnAI').disabled = false;
+
+                    if (data.stats.dangers > 0) {
+                        document.getElementById('btnKillAll').disabled = false;
+                        capNhatStatus('danger', '🔴 PHÁT HIỆN NGUY HIỂM');
+                    } else if (data.stats.warnings > 0) {
+                        capNhatStatus('scanning', '⚠️ CÓ CẢNH BÁO');
+                    } else {
+                        capNhatStatus('safe', '✅ AN TOÀN');
+                    }
+
+                    alert('✅ QUÉT HOÀN TẤT!\n\n📊 Kết nối: ' + data.stats.connections +
+                        '\n⚙️ Tiến trình: ' + data.stats.processes +
+                        '\n⚠️ Cảnh báo: ' + data.stats.warnings +
+                        '\n🔴 Nguy hiểm: ' + data.stats.dangers);
+                }
+            } catch (err) {
+                console.error('Lỗi:', err);
+                alert('❌ Lỗi: ' + err.message);
+            }
+
+            btn.disabled = false;
+            btn.textContent = '🔍 QUÉT HỆ THỐNG';
+        }
+
+        // HIỂN THỊ KẾT NỐI
+        function hienThiKetNoi(conns) {
+            const el = document.getElementById('connList');
+            if (!conns || conns.length === 0) {
+                el.innerHTML = '<div class="empty-msg">Không có kết nối nghi ngờ</div>';
+                return;
+            }
+
+            // Sắp xếp nguy hiểm lên đầu
+            conns.sort((a, b) => {
+                const order = { danger: 0, warning: 1, safe: 2 };
+                return order[a.threat_level] - order[b.threat_level];
+            });
+
+            el.innerHTML = conns.slice(0, 15).map(c => `
+        <div class="threat-card ${c.threat_level}">
+            <div class="threat-header">
+                <span class="threat-name">${c.process_name} (PID: ${c.pid})</span>
+                <button class="info-btn" title="Protocol: ${c.protocol}\nLocal: ${c.local}\nRemote: ${c.remote_ip}:${c.remote_port}\nState: ${c.state}">i</button>
+            </div>
+            <div class="threat-info">→ ${c.remote_ip}:${c.remote_port}</div>
+            ${c.threat_level !== 'safe' ? `
+            <div class="threat-actions">
+                <button class="btn-small btn-kill" onclick="dietTienTrinh('${c.pid}')">💀 DIỆT</button>
+                <button class="btn-small btn-block" onclick="chanIP('${c.remote_ip}')">🚫 CHẶN IP</button>
+            </div>
+            ` : ''}
+        </div>
+    `).join('');
+        }
+
+        // HIỂN THỊ TIẾN TRÌNH
+        function hienThiTienTrinh(procs) {
+            const el = document.getElementById('procList');
+            const suspicious = procs.filter(p => p.threat_level !== 'safe');
+
+            if (suspicious.length === 0) {
+                el.innerHTML = '<div class="empty-msg" style="color: #3fb950;">✅ Không có tiến trình nghi ngờ</div>';
+                return;
+            }
+
+            el.innerHTML = suspicious.map(p => `
+        <div class="threat-card ${p.threat_level}">
+            <div class="threat-header">
+                <span class="threat-name">${p.name}</span>
+                <button class="info-btn" title="Đường dẫn: ${p.path || 'Không xác định'}\nPID: ${p.pid}">i</button>
+            </div>
+            <div class="threat-info">PID: ${p.pid}</div>
+            <div class="threat-actions">
+                <button class="btn-small btn-kill" onclick="dietTienTrinh('${p.pid}')">💀 DIỆT NGAY</button>
+            </div>
+        </div>
+    `).join('');
+        }
+
+        // DIỆT TIẾN TRÌNH
+        async function dietTienTrinh(pid) {
+            console.log('Yêu cầu diệt PID:', pid);
+
+            if (!confirm('⚠️ XÁC NHẬN DIỆT TIẾN TRÌNH?\n\nPID: ' + pid + '\n\nHành động này không thể hoàn tác!')) {
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/kill', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pid: pid })
+                });
+
+                const data = await res.json();
+                console.log('Kết quả diệt:', data);
+
+                if (data.success) {
+                    alert('✅ THÀNH CÔNG!\n\n' + data.message);
+                    quetHeThong(); // Quét lại
+                } else {
+                    alert('❌ THẤT BẠI!\n\n' + data.message + '\n\n💡 Mẹo: Thử chạy Flask với quyền Administrator');
+                }
+            } catch (err) {
+                console.error('Lỗi diệt:', err);
+                alert('❌ LỖI KẾT NỐI!\n\n' + err.message);
+            }
+        }
+
+        // CHẶN IP
+        async function chanIP(ip) {
+            console.log('Yêu cầu chặn IP:', ip);
+
+            if (!confirm('⚠️ XÁC NHẬN CHẶN IP?\n\nIP: ' + ip + '\n\nIP sẽ bị block bởi Windows Firewall!')) {
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/block', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ip: ip })
+                });
+
+                const data = await res.json();
+                console.log('Kết quả chặn:', data);
+
+                if (data.success) {
+                    alert('✅ THÀNH CÔNG!\n\n' + data.message);
+                } else {
+                    alert('❌ THẤT BẠI!\n\n' + data.message + '\n\n💡 Mẹo: Thử chạy Flask với quyền Administrator');
+                }
+            } catch (err) {
+                console.error('Lỗi chặn:', err);
+                alert('❌ LỖI KẾT NỐI!\n\n' + err.message);
+            }
+        }
+
+        // DIỆT TẤT CẢ
+        async function dietTatCa() {
+            if (!duLieu) return;
+
+            const dangers = [
+                ...duLieu.connections.filter(c => c.threat_level === 'danger'),
+                ...duLieu.processes.filter(p => p.threat_level === 'danger')
+            ];
+
+            if (dangers.length === 0) {
+                alert('Không có mục nguy hiểm nào cần diệt');
+                return;
+            }
+
+            if (!confirm('⚠️ XÁC NHẬN DIỆT TẤT CẢ ' + dangers.length + ' MỤC NGUY HIỂM?')) {
+                return;
+            }
+
+            let killed = 0;
+            for (const item of dangers) {
+                try {
+                    await fetch('/api/kill', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ pid: item.pid })
+                    });
+                    killed++;
+                } catch (e) { }
+            }
+
+            alert('✅ Đã xử lý ' + killed + '/' + dangers.length + ' mục');
+            quetHeThong();
+        }
+
+        // PHÂN TÍCH AI
+        async function phanTichAI() {
+            const btn = document.getElementById('btnAI');
+            btn.disabled = true;
+            btn.textContent = '⏳ Đang phân tích...';
+
+            try {
+                const res = await fetch('/api/analyze', { method: 'POST' });
+                const data = await res.json();
+                console.log('Kết quả AI:', data);
+
+                if (data.success && data.analysis) {
+                    let msg = '🤖 KẾT QUẢ PHÂN TÍCH AI\n\n';
+                    msg += '📊 Mức độ: ' + data.analysis.risk_level + '\n\n';
+                    msg += '📝 Tóm tắt: ' + data.analysis.summary + '\n\n';
+
+                    if (data.analysis.threats && data.analysis.threats.length > 0) {
+                        msg += '⚠️ Mối đe dọa:\n';
+                        data.analysis.threats.forEach((t, i) => {
+                            msg += (i + 1) + '. ' + t.name + '\n';
+                        });
+                    }
+
+                    alert(msg);
+                }
+            } catch (err) {
+                alert('❌ Lỗi: ' + err.message);
+            }
+
+            btn.disabled = false;
+            btn.textContent = '🤖 PHÂN TÍCH AI';
+        }
+    </script>
+</body>
+
+</html>

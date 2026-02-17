@@ -1,0 +1,870 @@
+[Skip to content](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad#start-of-content)
+[All gists](https://gist.github.com/discover)
+[Back to GitHub](https://github.com)
+[Sign in](https://gist.github.com/auth/github?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad)
+[Sign up](https://gist.github.com/join?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad&source=header-gist)
+[Sign in](https://gist.github.com/auth/github?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad)
+[Sign up](https://gist.github.com/join?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad&source=header-gist)
+[Reload](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad)
+[Reload](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad)
+[Reload](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad)
+Instantly share code, notes, and snippets.
+
+# [GeneralSadaf](https://gist.github.com/GeneralSadaf)/[List of Discord voice activities.md](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad)
+[GeneralSadaf](https://gist.github.com/GeneralSadaf)
+[List of Discord voice activities.md](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad)
+- 
+
+
+    [Download ZIP](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad/archive/86cac0bc0437eaf2d8309acb4c3f265fb2cbbea5.zip)
+
+
+[Download ZIP](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad/archive/86cac0bc0437eaf2d8309acb4c3f265fb2cbbea5.zip)
+- 
+          [Star
+
+          73
+          (73)](https://gist.github.com/login?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad)You must be signed in to star a gist
+
+
+- 
+            [Fork
+
+          4
+          (4)](https://gist.github.com/login?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad)You must be signed in to fork a gist
+
+
+[Star
+
+          73
+          (73)](https://gist.github.com/login?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad)
+[Fork
+
+          4
+          (4)](https://gist.github.com/login?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad)
+- 
+
+
+
+
+
+    Embed
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Select an option
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           Embed
+      Embed this gist in your website.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           Share
+      Copy sharable link for this gist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          Clone via HTTPS
+      Clone using the web URL.
+
+
+
+
+
+
+
+
+              No results found
+
+
+              [Learn more about clone URLs](https://docs.github.com/articles/which-remote-url-should-i-use)
+
+
+
+
+        Clone this repository at &lt;script src=&quot;https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad.js&quot;&gt;&lt;/script&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+           Embed
+      Embed this gist in your website.
+
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+           Share
+      Copy sharable link for this gist.
+
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+          Clone via HTTPS
+      Clone using the web URL.
+
+
+
+- 
+
+
+
+Save GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad to your computer and use it in GitHub Desktop.
+
+# Select an option
+- 
+
+
+
+
+
+
+
+
+
+
+           Embed
+      Embed this gist in your website.
+
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+           Share
+      Copy sharable link for this gist.
+
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+          Clone via HTTPS
+      Clone using the web URL.
+
+## No results found
+
+[Learn more about clone URLs](https://docs.github.com/articles/which-remote-url-should-i-use)
+[Code](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad)
+[Revisions
+        28](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad/revisions)
+[Stars
+        70](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad/stargazers)
+[Forks
+        4](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad/forks)
+
+# Select an option
+
+- 
+
+
+
+
+
+
+
+
+
+
+           Embed
+      Embed this gist in your website.
+
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+           Share
+      Copy sharable link for this gist.
+
+
+
+- 
+
+
+
+
+
+
+
+
+
+
+          Clone via HTTPS
+      Clone using the web URL.
+
+## No results found
+
+[Learn more about clone URLs](https://docs.github.com/articles/which-remote-url-should-i-use)
+[Download ZIP](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad/archive/86cac0bc0437eaf2d8309acb4c3f265fb2cbbea5.zip)
+[Raw](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad/raw/86cac0bc0437eaf2d8309acb4c3f265fb2cbbea5/List%2520of%2520Discord%2520voice%2520activities.md)
+[List of Discord voice activities.md](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad#file-list-of-discord-voice-activities-md)
+
+### [snowyyd](https://gist.github.com/snowyyd) commented [Jul 27, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4246103#gistcomment-4246103) • edited Loading Uh oh! There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[snowyyd](https://gist.github.com/snowyyd)
+[Jul 27, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4246103#gistcomment-4246103)
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+how to authorize for this endpoint? Bots aren't allowed for this endpoint
+It's an user endpoint, bots have nothing to do with activities
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [ElParentesis](https://gist.github.com/ElParentesis) commented [Aug 13, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4266208#gistcomment-4266208) • edited Loading Uh oh! There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[ElParentesis](https://gist.github.com/ElParentesis)
+[Aug 13, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4266208#gistcomment-4266208)
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+## How to bypass voice activity access permissions (04/09/2023)
+
+This is client side btw you need people to run the same script
+
+```
+(webpackChunkdiscord_app.push([[''],{},e=>{mods = Object.values(e.c)}])); const { exports: { Z } } = mods.findLast(m => m?.exports?.Z?.dispatch); Z.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "886415887287066664", // Testing Discord app originURL: "https://putidhere.discordsays.com/" });
+```
+
+### Old Codes
+how 2 bypass voice activity access permissions:
+NEW CODE to bypass voice activity access permissions:
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [snowyyd](https://gist.github.com/snowyyd) commented [Sep 24, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4314079#gistcomment-4314079) • edited Loading Uh oh! There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[snowyyd](https://gist.github.com/snowyyd)
+[Sep 24, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4314079#gistcomment-4314079)
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+Bash Out
+
+```
+{ "application_id": "1006584476094177371", "expires_on": null, "new_until": null, "nitro_requirement": false, "premium_tier_level": 1 },
+```
+
+
+```
+{ "id": "1006584476094177371", "name": "Bash Out", "icon": "eace9c231b505f0c96fba27d1795c31a", "description": "Mini multiplayer mayhem!", "summary": "", "type": null, "cover_image": "eace9c231b505f0c96fba27d1795c31a", "hook": true, "terms_of_service_url": "https://www.play.co/tos", "privacy_policy_url": "https://www.play.co/privacy", "verify_key": "REDACTED", "flags": 131072, "max_participants": 16, "embedded_activity_config": { "activity_preview_video_asset_id": "1014210520854823023", "supported_platforms": [ "web", "ios", "android" ], "default_orientation_lock_state": 1 }, "tags": [ "Battle", "Bots", "Frenzy" ] },
+```
+
+Also, the following activities got removed:
+- Doodle Crew - 878067389634314250
+- Doodle Crew Dev - 878067427668275241
+- Awkword - 879863881349087252
+- Awkword Dev - 879863923543785532
+- Sketchy Artist - 879864070101172255
+- Sketchy Artist Dev - 879864104980979792
+- Decoders Dev - 891001866073296967
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [sopia004](https://gist.github.com/sopia004) commented [Nov 9, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4362995#gistcomment-4362995)
+[sopia004](https://gist.github.com/sopia004)
+[Nov 9, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4362995#gistcomment-4362995)
+Hello my help Discord ID:1015165529188741130
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [sopia004](https://gist.github.com/sopia004) commented [Nov 9, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4362996#gistcomment-4362996)
+[sopia004](https://gist.github.com/sopia004)
+[Nov 9, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4362996#gistcomment-4362996)
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [sopia004](https://gist.github.com/sopia004) commented [Nov 9, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4362997#gistcomment-4362997)
+[sopia004](https://gist.github.com/sopia004)
+[Nov 9, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4362997#gistcomment-4362997)
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [ghost](https://gist.github.com/ghost) commented [Nov 24, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4380758#gistcomment-4380758)
+[ghost](https://gist.github.com/ghost)
+[Nov 24, 2022](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4380758#gistcomment-4380758)
+You need to use this new code and find the id and replace the "ID here" fields with the ID of the activity you want to launch. Keep in mind some may still not work.
+(webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m => m?.exports?.Z?.isDispatching).exports.Z.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "yourOWNappidhere or Watch Together ID", originURL: "https://putidhere.discordsays.com/" })
+
+```
+(webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m => m?.exports?.Z?.isDispatching).exports.Z.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "yourOWNappidhere or Watch Together ID", originURL: "https://putidhere.discordsays.com/" })
+```
+
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [face-hh](https://gist.github.com/face-hh) commented [Feb 2, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4457583#gistcomment-4457583)
+[face-hh](https://gist.github.com/face-hh)
+[Feb 2, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4457583#gistcomment-4457583)
+GOD BLESS YOU
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [GeneralSadaf](https://gist.github.com/GeneralSadaf) commented [Feb 2, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4457616#gistcomment-4457616) • edited Loading Uh oh! There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[GeneralSadaf](https://gist.github.com/GeneralSadaf)
+[Feb 2, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4457616#gistcomment-4457616)
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+GOD BLESS YOU
+[@face-hh](https://github.com/face-hh) hah thanks, you building something?
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [face-hh](https://gist.github.com/face-hh) commented [Feb 4, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4460006#gistcomment-4460006)
+[face-hh](https://gist.github.com/face-hh)
+[Feb 4, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4460006#gistcomment-4460006)
+GOD BLESS YOU
+[@face-hh](https://github.com/face-hh) hah thanks, you building something?
+Yep, I'm creating "discord wrapped", thanks for taking your time creating this, I really couldn't find it, even in Discord's backend :)
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [UserUNP](https://gist.github.com/UserUNP) commented [Mar 14, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4501641#gistcomment-4501641) • edited Loading Uh oh! There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[UserUNP](https://gist.github.com/UserUNP)
+[Mar 14, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4501641#gistcomment-4501641)
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+Discord obliterated the dispatcher from existence because it's weirdly obfuscate.. I'm not sure if this will hold up when Discord updates because I've just found it yesterday..
+
+```
+(webpackChunkdiscord_app.push([[''],{},e=>{mods = Object.values(e.c)}])); const { exports: { Z } } = mods.findLast(m => m?.exports?.Z?.dispatch); Z.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "886415887287066664", // Testing Discord app originURL: "https://putidhere.discordsays.com/" });
+```
+
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [K3v1nNZ](https://gist.github.com/K3v1nNZ) commented [May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4572888#gistcomment-4572888) • edited Loading Uh oh! There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[K3v1nNZ](https://gist.github.com/K3v1nNZ)
+[May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4572888#gistcomment-4572888)
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+Found some more activities.
+Bobble Land: Scrappies 1000100849122553977 Colonist.io 1049916362383962192 Jamspace 1070087967294631976 Jamspace Dev 1070097992746541207 Railway Nothing Found Error Page 1001529884625088563 Youtube Together QA 1050941315912835122 Know What I Meme Dev 950507686422794280 Krunker FRVR 1011683823555199066
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [Cxsmo-ai](https://gist.github.com/Cxsmo-ai) commented [May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573012#gistcomment-4573012)
+[Cxsmo-ai](https://gist.github.com/Cxsmo-ai)
+[May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573012#gistcomment-4573012)
+https://user-images.githubusercontent.com/74084396/239443364-7334dc0f-a62c-4287-a0d0-e8c12c9182ce.pnghow do you get colonist.io and the other ones to work i just keep getting
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [K3v1nNZ](https://gist.github.com/K3v1nNZ) commented [May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573023#gistcomment-4573023)
+[K3v1nNZ](https://gist.github.com/K3v1nNZ)
+[May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573023#gistcomment-4573023)
+https://user-images.githubusercontent.com/74084396/239443364-7334dc0f-a62c-4287-a0d0-e8c12c9182ce.pnghow do you get colonist.io and the other ones to work i just keep getting
+Go to the Discord settings and go to advanced and enable Developer Activity Shelf. Then go to start an activity and tick "Use Activity URL Override". then paste in to the override box "[https://APPIDHERE.discordsays.com](https://APPIDHERE.discordsays.com)" but replace APPIDHERE with the app id. Then just start any activity. Just a heads up though, Colonist.io doesn't work yet. The activity opens but it says that your user could not be loaded.
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [Cxsmo-ai](https://gist.github.com/Cxsmo-ai) commented [May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573059#gistcomment-4573059)
+[Cxsmo-ai](https://gist.github.com/Cxsmo-ai)
+[May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573059#gistcomment-4573059)
+https://user-images.githubusercontent.com/74084396/239457183-5e6f4708-ab38-4d8e-83a3-425ac8e5bc2b.pngi get this error also
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [Cxsmo-ai](https://gist.github.com/Cxsmo-ai) commented [May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573066#gistcomment-4573066)
+[Cxsmo-ai](https://gist.github.com/Cxsmo-ai)
+[May 19, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4573066#gistcomment-4573066)
+and also can other people join those activities.
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [mrhappyma](https://gist.github.com/mrhappyma) commented [Jun 8, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4593029#gistcomment-4593029)
+[mrhappyma](https://gist.github.com/mrhappyma)
+[Jun 8, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4593029#gistcomment-4593029)
+fishington.io has been deleted
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [Juicer421](https://gist.github.com/Juicer421) commented [Jun 22, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4606634#gistcomment-4606634)
+[Juicer421](https://gist.github.com/Juicer421)
+[Jun 22, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4606634#gistcomment-4606634)
+I have not been able to start any of them. More specifically I have been trying to play chef showdown, I've met two people who have it and this is the only lead I can find. Anyone wanna help a newb?
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [million1156](https://gist.github.com/million1156) commented [Dec 6, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4783792#gistcomment-4783792)
+[million1156](https://gist.github.com/million1156)
+[Dec 6, 2023](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4783792#gistcomment-4783792)
+Quick update :3
+If you're using a client mod (such as Vencord), here's a (working) and more simple method to enable "Test Mode":
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Any text or number you want", // Testing Discord app originURL: "https://appID.discordsays.com/" });
+```
+
+, So for example,
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Discord Client", // Testing Discord app originURL: "https://880559245471408169.discordsays.com" });
+```
+
+https://private-user-images.githubusercontent.com/91338231/288264084-ae1ab9c4-a4d6-460d-a8fc-cc77d00730c9.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjUzODc0ODEsIm5iZiI6MTc2NTM4NzE4MSwicGF0aCI6Ii85MTMzODIzMS8yODgyNjQwODQtYWUxYWI5YzQtYTRkNi00NjBkLWE4ZmMtY2M3N2QwMDczMGM5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEyMTAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMjEwVDE3MTk0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTA2ZjBlY2U3YWNlYjhiM2VjZjUwNThiYTA3NzQ0N2MyNTRhN2I4NWM5YWRhYjFkZDcxMDFlYTkwZTc5NmVjMzMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.uayQzt10HEuYnU9drqXJPOMr1mOB-oh6YrWa16KRICU, will produce a result similar to this:
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [Trao-X](https://gist.github.com/Trao-X) commented [Jan 20, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4841340#gistcomment-4841340)
+[Trao-X](https://gist.github.com/Trao-X)
+[Jan 20, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4841340#gistcomment-4841340)
+What do you mean that it works?
+It just says "FluxDispatcher is not defined".
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [million1156](https://gist.github.com/million1156) commented [Jan 20, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4841413#gistcomment-4841413)
+[million1156](https://gist.github.com/million1156)
+[Jan 20, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4841413#gistcomment-4841413)
+What do you mean that it works?
+It just says "FluxDispatcher is not defined".
+You need Vencord (a client mod, which IS against TOS) to use that method IIRC
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [ThatRedDice](https://gist.github.com/ThatRedDice) commented [Jan 21, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4842247#gistcomment-4842247)
+[ThatRedDice](https://gist.github.com/ThatRedDice)
+[Jan 21, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4842247#gistcomment-4842247)
+Quick update :3
+If you're using a client mod (such as Vencord), here's a (working) and more simple method to enable "Test Mode":
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Any text or number you want", // Testing Discord app originURL: "https://appID.discordsays.com/" });
+```
+
+, So for example,
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Discord Client", // Testing Discord app originURL: "https://880559245471408169.discordsays.com" });
+```
+
+https://private-user-images.githubusercontent.com/91338231/288264084-ae1ab9c4-a4d6-460d-a8fc-cc77d00730c9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU4NDkwMTUsIm5iZiI6MTcwNTg0ODcxNSwicGF0aCI6Ii85MTMzODIzMS8yODgyNjQwODQtYWUxYWI5YzQtYTRkNi00NjBkLWE4ZmMtY2M3N2QwMDczMGM5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMjElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTIxVDE0NTE1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTA5ZjgzN2YwMzViNDk3ZDFkMGUzZjM4OGViNTA1YWFhOTFkZmJiOGU3ZGI0ZjA3MTU4OTVkZmM0NTYxY2RkMDImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ddrhhDDQV_rkt_WPvKpIPXogfmVzS8XlqDCO_velleA, will produce a result similar to this:
+hey where exactly do I put this ive got Vencord.
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [million1156](https://gist.github.com/million1156) commented [Jan 25, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4850931#gistcomment-4850931)
+[million1156](https://gist.github.com/million1156)
+[Jan 25, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4850931#gistcomment-4850931)
+Quick update :3 If you're using a client mod (such as Vencord), here's a (working) and more simple method to enable "Test Mode":
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Any text or number you want", // Testing Discord app originURL: "https://appID.discordsays.com/" });
+```
+
+, So for example,
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Discord Client", // Testing Discord app originURL: "https://880559245471408169.discordsays.com" });
+```
+
+https://private-user-images.githubusercontent.com/91338231/288264084-ae1ab9c4-a4d6-460d-a8fc-cc77d00730c9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU4NDkwMTUsIm5iZiI6MTcwNTg0ODcxNSwicGF0aCI6Ii85MTMzODIzMS8yODgyNjQwODQtYWUxYWI5YzQtYTRkNi00NjBkLWE4ZmMtY2M3N2QwMDczMGM5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMjElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTIxVDE0NTE1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTA5ZjgzN2YwMzViNDk3ZDFkMGUzZjM4OGViNTA1YWFhOTFkZmJiOGU3ZGI0ZjA3MTU4OTVkZmM0NTYxY2RkMDImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ddrhhDDQV_rkt_WPvKpIPXogfmVzS8XlqDCO_velleA, will produce a result similar to this:
+hey where exactly do I put this ive got Vencord.
+Press CTRL + Shift + I and click "Console", or Option + Command + I if you're on macOS
+
+```
+CTRL + Shift + I
+```
+
+
+```
+Option + Command + I
+```
+
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [Trao-X](https://gist.github.com/Trao-X) commented [Feb 2, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4870261#gistcomment-4870261) • edited Loading Uh oh! There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[Trao-X](https://gist.github.com/Trao-X)
+[Feb 2, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4870261#gistcomment-4870261)
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+Don't know what you're talking about, but there is no stuff like that on Vencord. (I have it.)
+https://user-images.githubusercontent.com/140246452/301906889-4ff48b8e-d7a2-44f1-a8ef-0bd184995b92.pngHere is the .
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [UserUNP](https://gist.github.com/UserUNP) commented [Feb 8, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4884792#gistcomment-4884792)
+[UserUNP](https://gist.github.com/UserUNP)
+[Feb 8, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=4884792#gistcomment-4884792)
+client mods do have APIs to mess with the flux dispatcher look at the documentation for your client mod to see how to use it
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [RealMCoded](https://gist.github.com/RealMCoded) commented [Apr 7, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5014943#gistcomment-5014943)
+[RealMCoded](https://gist.github.com/RealMCoded)
+[Apr 7, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5014943#gistcomment-5014943)
+Some new ones were found for a wordle clone
+
+```
+Wagons - 1211781489931452447 Wagons QA - 1211780388607885393 Wagons DEV - 1166579889915310151
+```
+
+
+```
+Wagons - 1211781489931452447 Wagons QA - 1211780388607885393 Wagons DEV - 1166579889915310151
+```
+
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [Trao-X](https://gist.github.com/Trao-X) commented [Apr 7, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5015244#gistcomment-5015244)
+[Trao-X](https://gist.github.com/Trao-X)
+[Apr 7, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5015244#gistcomment-5015244)
+Death by AI and Goober Dash isn't added. Along with Playscape Production, QA and Dev. Here is a list:
+
+```
+Death by AI - 1186785228182798556 (Maximum 10 participants) Goober Dash - 1186785228182798556 (Maximum 32 participants) Playscape - 1217076740820832346 (Maximum 8 participants) Playscape QA - 1167111018338598912 (Unlimited participants) Playscape Dev - 1093953453975404625 (Unlimited participants)
+```
+
+
+```
+Death by AI - 1186785228182798556 (Maximum 10 participants) Goober Dash - 1186785228182798556 (Maximum 32 participants) Playscape - 1217076740820832346 (Maximum 8 participants) Playscape QA - 1167111018338598912 (Unlimited participants) Playscape Dev - 1093953453975404625 (Unlimited participants)
+```
+
+Also, Word Snacks Dev and Word Snacks has since been deleted. The clone of Watch Together has since been deleted.
+And, I don't know if you really count these, but there have been some activities by Mojiworks (the creator of Chef Showdown) for beta-testing. If you want to include them, here are their IDs.
+
+```
+Chef [PLAYER FEEDBACK] (Chef Showdown BETATEST) - 1100444516957298820 (Unlimited participants) Thieves [PLAYER FEEDBACK] (Thieves BETATEST) - 1194681004259029083 (Unlimited participants)
+```
+
+
+```
+Chef [PLAYER FEEDBACK] (Chef Showdown BETATEST) - 1100444516957298820 (Unlimited participants) Thieves [PLAYER FEEDBACK] (Thieves BETATEST) - 1194681004259029083 (Unlimited participants)
+```
+
+I also saw found some Staging activities, which are not mentioned, they are as follows:
+
+```
+Color Together Staging - 1070651686932197517 (Unlimited participants) Colonist.io Staging - 1106787009256767498 (Unlimited participants)
+```
+
+
+```
+Color Together Staging - 1070651686932197517 (Unlimited participants) Colonist.io Staging - 1106787009256767498 (Unlimited participants)
+```
+
+Thank you.
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [CelluloidRacer2](https://gist.github.com/CelluloidRacer2) commented [Apr 18, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5027675#gistcomment-5027675)
+[CelluloidRacer2](https://gist.github.com/CelluloidRacer2)
+[Apr 18, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5027675#gistcomment-5027675)
+Here's another one- I think this one may have just launched
+
+```
+TuneIn Listen Together - 1196535986226745437 (Maximum 25 participants)
+```
+
+
+```
+TuneIn Listen Together - 1196535986226745437 (Maximum 25 participants)
+```
+
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [BlobIsBack](https://gist.github.com/BlobIsBack) commented [May 19, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5062027#gistcomment-5062027)
+[BlobIsBack](https://gist.github.com/BlobIsBack)
+[May 19, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5062027#gistcomment-5062027)
+Quick update :3 If you're using a client mod (such as Vencord), here's a (working) and more simple method to enable "Test Mode":
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Any text or number you want", // Testing Discord app originURL: "https://appID.discordsays.com/" });
+```
+
+, So for example,
+
+```
+FluxDispatcher.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "Discord Client", // Testing Discord app originURL: "https://880559245471408169.discordsays.com" });
+```
+
+https://private-user-images.githubusercontent.com/91338231/288264084-ae1ab9c4-a4d6-460d-a8fc-cc77d00730c9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU4NDkwMTUsIm5iZiI6MTcwNTg0ODcxNSwicGF0aCI6Ii85MTMzODIzMS8yODgyNjQwODQtYWUxYWI5YzQtYTRkNi00NjBkLWE4ZmMtY2M3N2QwMDczMGM5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMjElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTIxVDE0NTE1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTA5ZjgzN2YwMzViNDk3ZDFkMGUzZjM4OGViNTA1YWFhOTFkZmJiOGU3ZGI0ZjA3MTU4OTVkZmM0NTYxY2RkMDImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ddrhhDDQV_rkt_WPvKpIPXogfmVzS8XlqDCO_velleA, will produce a result similar to this:
+hey where exactly do I put this ive got Vencord.
+Press CTRL + Shift + I and click "Console", or Option + Command + I if you're on macOS
+
+```
+CTRL + Shift + I
+```
+
+
+```
+Option + Command + I
+```
+
+fluxdispatcher is not defined
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+
+### [BlobIsBack](https://gist.github.com/BlobIsBack) commented [May 19, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5062050#gistcomment-5062050)
+[BlobIsBack](https://gist.github.com/BlobIsBack)
+[May 19, 2024](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad?permalink_comment_id=5062050#gistcomment-5062050)
+
+## How to bypass voice activity access permissions (04/09/2023)
+
+This is client side btw you need people to run the same script
+
+```
+(webpackChunkdiscord_app.push([[''],{},e=>{mods = Object.values(e.c)}])); const { exports: { Z } } = mods.findLast(m => m?.exports?.Z?.dispatch); Z.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "886415887287066664", // Testing Discord app originURL: "https://putidhere.discordsays.com/" });
+```
+
+### Old Codes
+how 2 bypass voice activity access permissions:
+(webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m => m?.exports?.default?.isDispatching).exports.default.dirtyDispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "886415887287066664", originURL: "[https://putidhere.discordsays.com/](https://putidhere.discordsays.com/)" })
+NEW CODE to bypass voice activity access permissions:
+(webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m => m?.exports?.Z?.isDispatching).exports.Z.dispatch({ type: "DEVELOPER_TEST_MODE_AUTHORIZATION_SUCCESS", applicationId: "yourOWNappidhere or Watch Together ID", originURL: "[https://putidhere.discordsays.com/](https://putidhere.discordsays.com/)" })
+gives an error message
+Sorry, something went wrong.
+
+### Uh oh!
+There was an error while loading. [Please reload this page](https://gist.github.com/GeneralSadaf/42d91a2b6a93a7db7a39208f2d8b53ad).
+[Sign up for free](https://gist.github.com/join?source=comment-gist)
+[Sign in to comment](https://gist.github.com/login?return_to=https%3A%2F%2Fgist.github.com%2FGeneralSadaf%2F42d91a2b6a93a7db7a39208f2d8b53ad)
+
+### Footer navigation
+
+- 
+            [Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)
+
+- 
+            [Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)
+
+- 
+            [Security](https://github.com/security)
+
+- 
+            [Status](https://www.githubstatus.com/)
+
+- 
+            [Community](https://github.community/)
+
+- 
+            [Docs](https://docs.github.com/)
+
+- 
+            [Contact](https://support.github.com?tags=dotcom-footer)
+
+- 
+
+
+       Manage cookies
+
+
+
+- 
+
+
+      Do not share my personal information
+
+
+
+[Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)
+[Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)
+[Security](https://github.com/security)
+[Status](https://www.githubstatus.com/)
+[Community](https://github.community/)
+[Docs](https://docs.github.com/)
+[Contact](https://support.github.com?tags=dotcom-footer)

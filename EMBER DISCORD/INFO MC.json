@@ -1,0 +1,59 @@
+{
+  "version": 7,
+  "backups": [
+    {
+      "name": "info mc",
+      "messages": [
+        {
+          "data": {
+            "content": null,
+            "embeds": [
+              {
+                "color": 1376000,
+                "footer": {
+                  "text": "ㅤ  ───────✦ Online 10 phút trước ✦───────"
+                },
+                "image": {
+                  "url": "https://cdn3.emoji.gg/emojis/3933-tocaaqui.gif"
+                }
+              },
+              {
+                "title": "╰➤        @kim_div      ║      ducanh1327",
+                "color": 1376000
+              },
+              {
+                "title": ">>> <:98437regenheart:1448901017637879848>  **20/20**ㅤ             <:animated_clock:1448905091968008242>  **Sun**     \n───────────────────\n <:1405diamondpickaxe:1448900542255464499> **1000**              <:1405diamondsword:1448900946749952112> **1000**",
+                "color": 16714240,
+                "thumbnail": {
+                  "url": "https://cdn3.emoji.gg/emojis/1201-animated-clock.png"
+                }
+              },
+              {
+                "title": "> <:Minecraft_World_Cube:1448905048284201000> **100/50/100**ㅤㅤ                      \n  >     ⊢ *Biome*\n  >       ⊢ *Construction*",
+                "color": 679884,
+                "thumbnail": {
+                  "url": "https://cdn3.emoji.gg/emojis/6410-minecraft-mundo.png"
+                }
+              },
+              {
+                "title": "> <:9648trashyaxolotl:1448907520855769128> **Pets**                                                 \n  >     ⊢ *Pet1*\n  >       ⊢ *Pet2*",
+                "color": 14680319,
+                "thumbnail": {
+                  "url": "https://cdn3.emoji.gg/emojis/8660-minecraft-bucketaxolotl.png"
+                }
+              }
+            ],
+            "avatar_url": "https://cdn3.emoji.gg/emojis/971370-steve.png",
+            "attachments": []
+          },
+          "reference": ""
+        }
+      ],
+      "targets": [
+        {
+          "url": "https://discord.com/api/webhooks/1444324094295281734/QBjAZ8awISilCCwJ0J6ObpOYFjnxOU7NJ7xjWIthhUAFWGTQroCZM85oxgZ74AeV5cjs"
+        }
+      ]
+    }
+  ]
+}

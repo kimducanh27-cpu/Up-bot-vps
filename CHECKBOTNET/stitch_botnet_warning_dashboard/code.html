@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Botnet Incident Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --cmd-red: #E70000;
+            --cmd-dark: #0A0A0A;
+            --cmd-grey: #1A1A1A;
+            --cmd-text-light: #F0F0F0;
+            --cmd-text-grey: #888888;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "var(--cmd-red)",
+                        "background-dark": "var(--cmd-dark)",
+                        "module-bg": "var(--cmd-grey)",
+                        "text-light": "var(--cmd-text-light)",
+                        "text-grey": "var(--cmd-text-grey)",
+                    },
+                    fontFamily: {
+                        "display": ["'Chakra Petch'", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem","lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 28;font-feature-settings: "liga";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }@keyframes pulse-red {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(231, 0, 0, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(231, 0, 0, 0);
+            }
+        }
+        .flash-warning {
+            animation: pulse-red 1.5s infinite ease-out;
+        }@keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .glitch-text {
+            position: relative;
+            animation: glitch-effect 5s infinite linear;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .glitch-text::before {
+            color: cyan;
+            opacity: 0.5;
+            z-index: -1;
+            animation: glitch-effect 3s infinite reverse linear;
+        }
+        .glitch-text::after {
+            color: magenta;
+            opacity: 0.5;
+            z-index: -2;
+            animation: glitch-effect 2s infinite linear;
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-text-light h-screen overflow-hidden">
+<div class="flex h-full w-full">
+<div class="grid h-full w-full grid-cols-12 grid-rows-12 gap-2 p-2">
+<header class="col-span-12 row-span-1 flex items-center justify-between border-b border-primary/50 bg-cmd-grey px-4 text-primary">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-primary flash-warning">report</span>
+<h1 class="glitch-text text-3xl font-bold uppercase tracking-wide" data-text="BOTNET INCIDENT COMMAND CENTER">BOTNET INCIDENT COMMAND CENTER</h1>
+</div>
+<div class="flex items-center gap-6 text-text-light">
+<span class="text-sm font-medium">STATUS: <span class="text-primary animate-pulse">CRITICAL THREAT LEVEL 1</span></span>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 border border-primary" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDU62nkpco5WHwVYzAYR-fq2-KSoQlJq2ejaLwDUB8AxVtpr00di2Y5mZHLFDDqcD3CZCH1hvFwRxMST7fRetjqhcFFyJXRG9tVu5klfseG4wt8U-Z0AnA2onGGQrc709_gZpBu7swAHM49SDHiyU-xp-xj1dWcsaarcPtMg0MCCtSJLOrD6wxrRtiLreMCdT2ASKA6JC0h232Od5Ktfxk7RrDoti7M67DtD739YuoTnyqNwXVd2-zm25xddWg7G74UNyb3gcjNHvo");'></div>
+<div class="flex flex-col text-right">
+<p class="text-sm font-bold text-primary">FIELD AGENT: ALEX HUDSON</p>
+<p class="text-xs text-text-grey">INCIDENT COMMANDER</p>
+</div>
+</div>
+</div>
+</header>
+<div class="col-span-8 row-span-8 flex flex-col overflow-hidden border border-primary/70 bg-module-bg p-4 shadow-xl">
+<h2 class="glitch-text mb-4 text-2xl font-bold uppercase text-primary" data-text="PRIMARY THREAT MONITOR">PRIMARY THREAT MONITOR</h2>
+<div class="flex-1 overflow-y-auto pr-2">
+<div class="mb-4 flex flex-col gap-3">
+<div class="relative flex items-center justify-between gap-4 border border-primary bg-primary/20 p-3 shadow-md flash-warning">
+<div class="absolute inset-0 bg-primary/5 opacity-20 animate-pulse"></div>
+<span class="material-symbols-outlined text-4xl text-primary">crisis_alert</span>
+<div class="flex flex-1 flex-col">
+<p class="text-lg font-bold uppercase tracking-wide text-primary">CRITICAL ALERT: C&amp;C EXFILTRATION DETECTED</p>
+<p class="text-sm text-text-light">IMMEDIATE ACTION: Host-101. High probability of data exfiltration to foreign C&amp;C server. AUTO-CONTAINMENT INITIATED.</p>
+<p class="text-xs text-text-grey mt-1">TIME: 2023-10-27 14:35 UTC | SOURCE: NETWORK SENSOR GRID 7</p>
+</div>
+<button class="flex w-fit cursor-pointer items-center justify-center gap-2 border border-primary bg-primary px-4 py-2 text-sm font-bold uppercase text-text-light hover:bg-primary/80">
+<span>ISOLATE &amp; ANALYZE</span>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+<div class="relative flex items-center justify-between gap-4 border border-primary bg-primary/20 p-3 shadow-md flash-warning">
+<div class="absolute inset-0 bg-primary/5 opacity-20 animate-pulse delay-200"></div>
+<span class="material-symbols-outlined text-4xl text-primary">error</span>
+<div class="flex flex-1 flex-col">
+<p class="text-lg font-bold uppercase tracking-wide text-primary">CRITICAL ALERT: RANSOMWARE ACTIVE ON SRV-FIN-03</p>
+<p class="text-sm text-text-light">SEVERE THREAT: Unusual file encryption activity observed. Potential ransomware attack in progress. MANUAL OVERRIDE REQUIRED.</p>
+<p class="text-xs text-text-grey mt-1">TIME: 2023-10-27 14:33 UTC | SOURCE: ENDPOINT SECURITY LOGS</p>
+</div>
+<button class="flex w-fit cursor-pointer items-center justify-center gap-2 border border-primary bg-primary px-4 py-2 text-sm font-bold uppercase text-text-light hover:bg-primary/80">
+<span>ACTIVATE LOCKDOWN</span>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+<div class="relative flex items-center justify-between gap-4 border border-primary/50 bg-module-bg p-3 shadow-md">
+<span class="material-symbols-outlined text-4xl text-yellow-500">warning</span>
+<div class="flex flex-1 flex-col">
+<p class="text-lg font-bold uppercase tracking-wide text-yellow-500">HIGH ALERT: BRUTE FORCE ON AUTH-SRV-02</p>
+<p class="text-sm text-text-light">INVESTIGATE: Sustained brute force attempts against critical authentication server. Watchlist for escalation.</p>
+<p class="text-xs text-text-grey mt-1">TIME: 2023-10-27 14:30 UTC | SOURCE: AUTHENTICATION LOGS</p>
+</div>
+<button class="flex w-fit cursor-pointer items-center justify-center gap-2 border border-text-grey bg-module-bg px-4 py-2 text-sm font-bold uppercase text-text-light hover:bg-primary/50">
+<span>REVIEW LOGS</span>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-4 row-span-8 flex flex-col gap-2">
+<div class="flex-1 flex flex-col border border-primary/60 bg-module-bg p-4 shadow-xl">
+<h3 class="glitch-text mb-3 text-xl font-bold uppercase text-primary" data-text="INCIDENT STATUS">INCIDENT STATUS</h3>
+<div class="flex flex-col gap-2 text-text-light">
+<div class="flex items-center justify-between text-base">
+<p>CRITICAL ALERTS:</p>
+<p class="text-3xl font-bold text-primary flash-warning">5</p>
+</div>
+<div class="flex items-center justify-between text-base">
+<p>ACTIVE THREATS:</p>
+<p class="text-3xl font-bold text-yellow-500">12</p>
+</div>
+<div class="flex items-center justify-between text-base">
+<p>AFFECTED HOSTS:</p>
+<p class="text-3xl font-bold text-orange-400">32</p>
+</div>
+<div class="flex items-center justify-between text-base">
+<p>ESCALATED CASES:</p>
+<p class="text-3xl font-bold text-green-500">3</p>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col border border-primary/60 bg-module-bg p-4 shadow-xl">
+<h3 class="glitch-text mb-3 text-xl font-bold uppercase text-primary" data-text="COMMAND CONSOLE">COMMAND CONSOLE</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex flex-col items-center justify-center gap-1 border border-primary bg-primary/20 p-3 text-sm font-bold uppercase text-primary hover:bg-primary/50">
+<span class="material-symbols-outlined text-3xl">gavel</span>
+                            CONTAIN
+                        </button>
+<button class="flex flex-col items-center justify-center gap-1 border border-yellow-500 bg-yellow-500/20 p-3 text-sm font-bold uppercase text-yellow-500 hover:bg-yellow-500/50">
+<span class="material-symbols-outlined text-3xl">search</span>
+                            ANALYZE
+                        </button>
+<button class="flex flex-col items-center justify-center gap-1 border border-orange-400 bg-orange-400/20 p-3 text-sm font-bold uppercase text-orange-400 hover:bg-orange-400/50">
+<span class="material-symbols-outlined text-3xl">link_off</span>
+                            ISOLATE
+                        </button>
+<button class="flex flex-col items-center justify-center gap-1 border border-text-grey bg-text-grey/20 p-3 text-sm font-bold uppercase text-text-grey hover:bg-text-grey/50">
+<span class="material-symbols-outlined text-3xl">dns</span>
+                            REMEDIATE
+                        </button>
+</div>
+</div>
+</div>
+<div class="col-span-8 row-span-3 flex flex-col overflow-hidden border border-primary/70 bg-module-bg p-4 shadow-xl">
+<h2 class="glitch-text mb-3 text-2xl font-bold uppercase text-primary" data-text="ACTIVE THREAT LOGS">ACTIVE THREAT LOGS</h2>
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-left text-sm text-text-light">
+<thead class="bg-primary/20 text-xs uppercase text-primary">
+<tr>
+<th class="px-4 py-2" scope="col">THREAT ID</th>
+<th class="px-4 py-2" scope="col">SEVERITY</th>
+<th class="px-4 py-2" scope="col">STATUS</th>
+<th class="px-4 py-2" scope="col">TARGET</th>
+<th class="px-4 py-2" scope="col">DETECTED</th>
+<th class="px-4 py-2" scope="col">ACTION</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-primary/20 hover:bg-primary/10">
+<th class="whitespace-nowrap px-4 py-2 font-medium text-text-light" scope="row">BOT-EXE-001A</th>
+<td class="px-4 py-2">
+<span class="inline-flex items-center rounded-sm bg-primary/30 px-2 py-0.5 text-xs font-bold uppercase text-primary">CRITICAL</span>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center gap-1.5"><div class="size-2 animate-pulse rounded-full bg-primary"></div> ACTIVE</span>
+</td>
+<td class="px-4 py-2">HOST-101</td>
+<td class="px-4 py-2">2023-10-27 14:35 UTC</td>
+<td class="px-4 py-2"><button class="text-primary hover:underline">Details</button></td>
+</tr>
+<tr class="border-b border-primary/20 hover:bg-primary/10">
+<th class="whitespace-nowrap px-4 py-2 font-medium text-text-light" scope="row">RANSOM-V2.1</th>
+<td class="px-4 py-2">
+<span class="inline-flex items-center rounded-sm bg-primary/30 px-2 py-0.5 text-xs font-bold uppercase text-primary">CRITICAL</span>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center gap-1.5"><div class="size-2 animate-pulse rounded-full bg-primary"></div> ACTIVE</span>
+</td>
+<td class="px-4 py-2">SRV-FIN-03</td>
+<td class="px-4 py-2">2023-10-27 14:33 UTC</td>
+<td class="px-4 py-2"><button class="text-primary hover:underline">Details</button></td>
+</tr>
+<tr class="border-b border-primary/20 hover:bg-primary/10">
+<th class="whitespace-nowrap px-4 py-2 font-medium text-text-light" scope="row">SUSP-PS-EXEC</th>
+<td class="px-4 py-2">
+<span class="inline-flex items-center rounded-sm bg-yellow-500/30 px-2 py-0.5 text-xs font-bold uppercase text-yellow-500">HIGH</span>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center gap-1.5"><div class="size-2 rounded-full bg-orange-400"></div> INVESTIGATING</span>
+</td>
+<td class="px-4 py-2">DEV-PC-045</td>
+<td class="px-4 py-2">2023-10-27 14:32 UTC</td>
+<td class="px-4 py-2"><button class="text-primary hover:underline">Details</button></td>
+</tr>
+<tr class="border-b border-primary/20 hover:bg-primary/10">
+<th class="whitespace-nowrap px-4 py-2 font-medium text-text-light" scope="row">NET-TRAFFIC-ANOM</th>
+<td class="px-4 py-2">
+<span class="inline-flex items-center rounded-sm bg-orange-400/30 px-2 py-0.5 text-xs font-bold uppercase text-orange-400">MEDIUM</span>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center gap-1.5"><div class="size-2 rounded-full bg-yellow-500"></div> NEW</span>
+</td>
+<td class="px-4 py-2">WEB-SRV-01</td>
+<td class="px-4 py-2">2023-10-27 11:15 UTC</td>
+<td class="px-4 py-2"><button class="text-primary hover:underline">Details</button></td>
+</tr>
+<tr class="hover:bg-primary/10">
+<th class="whitespace-nowrap px-4 py-2 font-medium text-text-light" scope="row">BRUTE-FORCE-ATTK</th>
+<td class="px-4 py-2">
+<span class="inline-flex items-center rounded-sm bg-orange-400/30 px-2 py-0.5 text-xs font-bold uppercase text-orange-400">MEDIUM</span>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center gap-1.5"><div class="size-2 rounded-full bg-green-500"></div> RESOLVED</span>
+</td>
+<td class="px-4 py-2">AUTH-SRV-02</td>
+<td class="px-4 py-2">2023-10-26 23:50 UTC</td>
+<td class="px-4 py-2"><button class="text-primary hover:underline">Details</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="col-span-4 row-span-3 flex flex-col overflow-hidden border border-primary/70 bg-module-bg p-4 shadow-xl">
+<h2 class="glitch-text mb-3 text-2xl font-bold uppercase text-primary" data-text="NETWORK VISUALIZER">NETWORK VISUALIZER</h2>
+<div class="flex-1 flex items-center justify-center text-text-grey text-lg italic">
+<span class="material-symbols-outlined text-8xl text-primary animate-pulse">flowsheet</span>
+<p class="ml-4">Live Network Flow (Simulated)</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

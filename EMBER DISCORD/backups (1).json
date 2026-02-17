@@ -1,0 +1,75 @@
+{
+  "version": 7,
+  "backups": [
+    {
+      "name": "backup word",
+      "messages": [
+        {
+          "data": {
+            "content": null,
+            "embeds": [
+              {
+                "title": "Back-Up-Word",
+                "description": "Map: One Block\nSize:\n------ᗪOᑎE------",
+                "color": 2749698,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3l2dWRzcG5kdHFxcjBveHFjNnM2dW1vZGE0b3M4a3dveXBxZ2F3ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/szaTML0LZFAQa3do7Y/giphy.gif"
+                }
+              }
+            ],
+            "attachments": []
+          },
+          "reference": ""
+        }
+      ],
+      "targets": [
+        {
+          "url": "https://discord.com/api/webhooks/1444324094295281734/QBjAZ8awISilCCwJ0J6ObpOYFjnxOU7NJ7xjWIthhUAFWGTQroCZM85oxgZ74AeV5cjs"
+        }
+      ]
+    },
+    {
+      "name": "tai vidoe",
+      "messages": [
+        {
+          "data": {
+            "content": null,
+            "embeds": [
+              {
+                "title": "Link tải video YOUTUBE",
+                "description": "Nền tảng: YOUTUBE\nChất lượng: Cao nhất\n\n📥 Click để tải video",
+                "color": 15140358,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZWg1NWw1MXBxZzUwaDltaTZpbTlnbXk5czRod2Ztcmt2OHFpdDJtdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TFSxpAIYz5inJGuY8f/giphy.gif"
+                }
+              },
+              {
+                "title": "Link tải video FACEBOOK",
+                "description": "Nền tảng: FACEBOOK\nChất lượng: Cao nhất\n\n📥 Click để tải video",
+                "color": 411111,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZWg1NWw1MXBxZzUwaDltaTZpbTlnbXk5czRod2Ztcmt2OHFpdDJtdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TFSxpAIYz5inJGuY8f/giphy.gif"
+                }
+              },
+              {
+                "title": "Link tải video TIKTOK",
+                "description": "Nền tảng: TIKTOK\nChất lượng: Cao nhất\n\n📥 Click để tải video",
+                "color": 0,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZWg1NWw1MXBxZzUwaDltaTZpbTlnbXk5czRod2Ztcmt2OHFpdDJtdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TFSxpAIYz5inJGuY8f/giphy.gif"
+                }
+              }
+            ],
+            "attachments": []
+          },
+          "reference": ""
+        }
+      ],
+      "targets": [
+        {
+          "url": "https://discord.com/api/webhooks/1444324094295281734/QBjAZ8awISilCCwJ0J6ObpOYFjnxOU7NJ7xjWIthhUAFWGTQroCZM85oxgZ74AeV5cjs"
+        }
+      ]
+    }
+  ]
+}

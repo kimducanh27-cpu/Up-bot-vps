@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">B</div>
+                <span>Bot Manager</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" onclick="switchTab('dashboard')">
+                    <i data-lucide="layout-dashboard"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" onclick="switchTab('settings')">
+                    <i data-lucide="settings"></i> Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="status-dot" id="connectionStatus"></div>
+                <span id="connectionText">Connected</span>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1 class="page-title" id="pageTitle">Overview</h1>
+                <div class="actions">
+                    <button id="btnStart" onclick="sendCommand('start')" class="btn btn-primary">
+                        <i data-lucide="play"></i> Start Bot
+                    </button>
+                    <button id="btnStop" onclick="sendCommand('stop')" class="btn btn-danger" disabled>
+                        <i data-lucide="square"></i> Stop
+                    </button>
+                    <button id="btnRestart" onclick="sendCommand('restart')" class="btn btn-secondary">
+                        <i data-lucide="refresh-cw"></i> Restart
+                    </button>
+                </div>
+            </header>
+
+            <!-- DASHBOARD VIEW -->
+            <div id="view-dashboard" class="view-section active">
+                <div class="dashboard-grid">
+                    <!-- STATS CARDS -->
+                    <div class="card stat-card">
+                        <div class="card-header">
+                            <span class="card-title">Status</span>
+                            <i data-lucide="activity" class="icon-subtle"></i>
+                        </div>
+                        <div class="card-value" id="botStatusText">Offline</div>
+                        <div class="card-sub">Bot Process State</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="card-header">
+                            <span class="card-title">Uptime</span>
+                            <i data-lucide="clock" class="icon-subtle"></i>
+                        </div>
+                        <div class="card-value" id="uptime">0m</div>
+                        <div class="card-sub">System Running Time</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="card-header">
+                            <span class="card-title">CPU Usage</span>
+                            <i data-lucide="cpu" class="icon-subtle"></i>
+                        </div>
+                        <div class="card-value" id="cpuVal">0%</div>
+                        <div class="card-sub">Host Processor Load</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="card-header">
+                            <span class="card-title">Memory</span>
+                            <i data-lucide="hard-drive" class="icon-subtle"></i>
+                        </div>
+                        <div class="card-value" id="ramVal">0%</div>
+                        <div class="card-sub">RAM Utilization</div>
+                    </div>
+
+                    <!-- CHARTS -->
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <span class="card-title">System Performance</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="resourceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- MAP / LOCATION -->
+                    <div class="card map-card">
+                        <div class="card-header">
+                            <span class="card-title">Spatial Coordinates</span>
+                        </div>
+                        <div class="map-placeholder">
+                            <div class="coord-display">
+                                <div class="coord-item">
+                                    <span class="label">X</span>
+                                    <span class="value" id="posX">0</span>
+                                </div>
+                                <div class="coord-item">
+                                    <span class="label">Y</span>
+                                    <span class="value" id="posY">0</span>
+                                </div>
+                                <div class="coord-item">
+                                    <span class="label">Z</span>
+                                    <span class="value" id="posZ">0</span>
+                                </div>
+                            </div>
+                            <canvas id="mapCanvas"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- LOGS -->
+                    <div class="card log-card">
+                        <div class="card-header">
+                            <span class="card-title">System Logs</span>
+                            <div class="badge" id="logCount">0 events</div>
+                        </div>
+                        <div class="log-viewer" id="logWindow">
+                            <!-- Logs injected here -->
+                        </div>
+                        <div class="command-bar">
+                            <input type="text" id="cmdInput" placeholder="Type a command..." autocomplete="off">
+                            <button onclick="submitCommand()" class="btn-icon">
+                                <i data-lucide="send"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS VIEW -->
+            <div id="view-settings" class="view-section" style="display: none;">
+                <div class="card settings-card">
+                    <div class="card-header">
+                        <span class="card-title">Bot Configuration</span>
+                    </div>
+                    <div class="settings-form" id="settingsForm">
+                        <!-- Form injected by JS -->
+                    </div>
+                    <div class="card-footer">
+                        <button onclick="saveConfig()" class="btn btn-primary">
+                            <i data-lucide="save"></i> Save & Restart Bot
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

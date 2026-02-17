@@ -1,0 +1,119 @@
+{
+  "version": 7,
+  "backups": [
+    {
+      "name": "backup word",
+      "messages": [
+        {
+          "data": {
+            "content": null,
+            "embeds": [
+              {
+                "title": "Back-Up-Word",
+                "description": "Map: One Block\nSize:\n------ᗪOᑎE------",
+                "color": 2749698,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3l2dWRzcG5kdHFxcjBveHFjNnM2dW1vZGE0b3M4a3dveXBxZ2F3ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/szaTML0LZFAQa3do7Y/giphy.gif"
+                }
+              }
+            ],
+            "attachments": []
+          },
+          "reference": ""
+        }
+      ],
+      "targets": [
+        {
+          "url": "https://discord.com/api/webhooks/1444324094295281734/QBjAZ8awISilCCwJ0J6ObpOYFjnxOU7NJ7xjWIthhUAFWGTQroCZM85oxgZ74AeV5cjs"
+        }
+      ]
+    },
+    {
+      "name": "tai vidoe",
+      "messages": [
+        {
+          "data": {
+            "content": null,
+            "embeds": [
+              {
+                "title": "Link tải video YOUTUBE",
+                "description": "Nền tảng: YOUTUBE\nChất lượng: Cao nhất\n\n📥 Click để tải video",
+                "color": 15140358,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZWg1NWw1MXBxZzUwaDltaTZpbTlnbXk5czRod2Ztcmt2OHFpdDJtdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TFSxpAIYz5inJGuY8f/giphy.gif"
+                }
+              },
+              {
+                "title": "Link tải video FACEBOOK",
+                "description": "Nền tảng: FACEBOOK\nChất lượng: Cao nhất\n\n📥 Click để tải video",
+                "color": 411111,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZWg1NWw1MXBxZzUwaDltaTZpbTlnbXk5czRod2Ztcmt2OHFpdDJtdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TFSxpAIYz5inJGuY8f/giphy.gif"
+                }
+              },
+              {
+                "title": "Link tải video TIKTOK",
+                "description": "Nền tảng: TIKTOK\nChất lượng: Cao nhất\n\n📥 Click để tải video",
+                "color": 0,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZWg1NWw1MXBxZzUwaDltaTZpbTlnbXk5czRod2Ztcmt2OHFpdDJtdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TFSxpAIYz5inJGuY8f/giphy.gif"
+                }
+              }
+            ],
+            "attachments": []
+          },
+          "reference": ""
+        }
+      ],
+      "targets": [
+        {
+          "url": "https://discord.com/api/webhooks/1444324094295281734/QBjAZ8awISilCCwJ0J6ObpOYFjnxOU7NJ7xjWIthhUAFWGTQroCZM85oxgZ74AeV5cjs"
+        }
+      ]
+    },
+    {
+      "name": "info",
+      "messages": [
+        {
+          "data": {
+            "content": null,
+            "embeds": [
+              {
+                "title": "╰➤    @kim_div      ║      ducanh1327 \n       ──────────✦ <:minecraft:1448897654531821739> ✦──────────",
+                "color": 1376000
+              },
+              {
+                "title": ">>> <:98437regenheart:1448901017637879848>  **20/20**ㅤ            <:animated_clock:1448905091968008242>  **Sun**     \n──────────────────✦\n <:1405diamondpickaxe:1448900542255464499> **1000**              <:1405diamondsword:1448900946749952112> **1000**",
+                "color": 16714240,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3lsODRlY3M2eG12aHg0MW8wbHFrc21mbnB2eGh2NnVteTFudWQ0cyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/zCq3TyuABrRrG/giphy.gif"
+                }
+              },
+              {
+                "title": "> <:Minecraft_World_Cube:1448905048284201000> **100/50/100**ㅤㅤ\n  >     ⊢ *Biome*\n  >       ⊢ *Construction*",
+                "color": 679884,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dzN4a3ljOXIwcjJwc3c2YXp3cmMxNWVveWt1eDkzNWNubHI0Z250ayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ayV3amDDcORfUy5t7I/giphy.gif"
+                }
+              },
+              {
+                "title": "> <:9648trashyaxolotl:1448907520855769128> **Pets**\n  >     ⊢ *Pet1*\n  >       ⊢ *Pet2*",
+                "color": 14680319,
+                "thumbnail": {
+                  "url": "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OGRzOTUxN3E3bDBmb3hqdXB5ZnV6MGV4eGNmZ2pqZ3NnNDJhMjllbiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ZDektocmsUkLn8h6AE/giphy.gif"
+                }
+              }
+            ],
+            "attachments": []
+          },
+          "reference": ""
+        }
+      ],
+      "targets": [
+        {
+          "url": "https://discord.com/api/webhooks/1444324094295281734/QBjAZ8awISilCCwJ0J6ObpOYFjnxOU7NJ7xjWIthhUAFWGTQroCZM85oxgZ74AeV5cjs"
+        }
+      ]
+    }
+  ]
+}
