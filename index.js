@@ -5448,7 +5448,7 @@ client.on('interactionCreate', async (interaction) => {
 });
 
 // -------------------- CANVAS STATS RENDERER --------------------
-const { createCanvas } = require('canvas');
+// Đã khai báo createCanvas ở đầu file
 
 async function renderStatsImage(playerName, statsMap, title, color = '#3498DB') {
     const items = Object.entries(statsMap || {})
