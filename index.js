@@ -16,6 +16,8 @@ const { spawn } = require('child_process');
 const { createCanvas, loadImage } = require('canvas');
 const SftpClient = require('ssh2-sftp-client');
 const archiver = require('archiver');
+const { TelegramClient } = require('telegram');
+const { StringSession } = require('telegram/sessions');
 // const { getMemoryContext, addMemory } = require('./mem0_manager');
 
 // -------------------- MEMORY MANAGER (OPTIONAL) --------------------
@@ -5675,38 +5677,93 @@ client.on('guildMemberRemove', async (member) => {
 
 
 // ==================== TELEGRAM HELPER ====================
+let tgClient = null;
+
+async function getTelegramClient() {
+    if (tgClient) return tgClient;
+
+    const apiId = Number(CONFIG.TELEGRAM_API_ID);
+    const apiHash = CONFIG.TELEGRAM_API_HASH;
+    const botToken = CONFIG.TELEGRAM_BOT_TOKEN;
+
+    if (!apiId || !apiHash || !botToken) {
+        throw new Error("Missing TELEGRAM_API_ID or TELEGRAM_API_HASH for MTProto backup.");
+    }
+
+    // Load existing session to avoid reconnect issues
+    let sessionStr = '';
+    const sessionFile = path.join(__dirname, 'telegram_session.txt');
+    if (fs.existsSync(sessionFile)) {
+        sessionStr = fs.readFileSync(sessionFile, 'utf8');
+    }
+
+    tgClient = new TelegramClient(new StringSession(sessionStr), apiId, apiHash, {
+        connectionRetries: 5,
+    });
+
+    await tgClient.start({
+        botAuthToken: botToken,
+    });
+
+    // Save session string
+    fs.writeFileSync(sessionFile, tgClient.session.save(), 'utf8');
+    console.log("[Telegram MTProto] Connected successfully as Bot!");
+
+    return tgClient;
+}
+
 async function sendToTelegram(filePath, caption) {
     if (!CONFIG.TELEGRAM_BOT_TOKEN || !CONFIG.TELEGRAM_BACKUP_CHAT_ID) {
         console.warn("[Telegram] Missing token or chat ID");
         return null;
     }
 
+    if (!CONFIG.TELEGRAM_API_ID || !CONFIG.TELEGRAM_API_HASH) {
+        console.warn("[Telegram] Missing TELEGRAM_API_ID or TELEGRAM_API_HASH. Fallback to normal HTTP bot api (max 50mb)...");
+        try {
+            const fileContent = fs.readFileSync(filePath);
+            const fileName = path.basename(filePath);
+            const blob = new Blob([fileContent]);
+
+            const formData = new FormData();
+            formData.append('chat_id', CONFIG.TELEGRAM_BACKUP_CHAT_ID);
+            formData.append('caption', caption || `Backup: ${fileName}`);
+            formData.append('document', blob, fileName);
+
+            console.log(`[Telegram HTTP] Sending ${fileName}...`);
+            const response = await fetch(`https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendDocument`, {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            if (!data.ok) {
+                console.error("[Telegram HTTP] API Error:", data);
+                throw new Error(`Telegram API Error: ${data.description}`);
+            }
+
+            console.log("[Telegram HTTP] Sent successfully!");
+            return data;
+        } catch (e) {
+            console.error("[Telegram HTTP] Upload Failed:", e);
+            throw e;
+        }
+    }
+
+    // MTPROTO PATH (For > 50MB files)
     try {
-        const fileContent = fs.readFileSync(filePath);
-        const fileName = path.basename(filePath);
-        const blob = new Blob([fileContent]); // Node 18+
+        console.log(`[Telegram MTProto] Uploading ${path.basename(filePath)} (Max 2GB)...`);
+        const clientTG = await getTelegramClient();
 
-        const formData = new FormData();
-        formData.append('chat_id', CONFIG.TELEGRAM_BACKUP_CHAT_ID);
-        formData.append('caption', caption || `Backup: ${fileName}`);
-        formData.append('document', blob, fileName);
-
-        console.log(`[Telegram] Sending ${fileName}...`);
-        const response = await fetch(`https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendDocument`, {
-            method: 'POST',
-            body: formData
+        await clientTG.sendFile(CONFIG.TELEGRAM_BACKUP_CHAT_ID, {
+            file: filePath,
+            caption: caption,
         });
 
-        const data = await response.json();
-        if (!data.ok) {
-            console.error("[Telegram] API Error:", data);
-            throw new Error(`Telegram API Error: ${data.description}`);
-        }
-
-        console.log("[Telegram] Sent successfully!");
-        return data;
+        console.log("[Telegram MTProto] Sent successfully!");
+        return { ok: true };
     } catch (e) {
-        console.error("[Telegram] Upload Failed:", e);
+        console.error("[Telegram MTProto] Upload Failed:", e);
         throw e;
     }
 }
