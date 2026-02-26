@@ -615,7 +615,7 @@ try {
                     if (isHostile) { hostileMap[name] = (hostileMap[name] || 0) + 1; hostileTotal++; }
                     else { passiveMap[name] = (passiveMap[name] || 0) + 1; passiveTotal++; }
                 }
-                let reply = `\u00a7e\u00a7l--- Qu\u00e9t Mob (24 blocks) ---\n`;
+                let reply = ``;
                 if (hostileTotal > 0) {
                     reply += `\u00a76\u00a7lQu\u00e1i v\u1eadt (${hostileTotal}):\n`;
                     for (const [n, c] of Object.entries(hostileMap).sort((a, b) => b[1] - a[1])) reply += `\u00a76  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
@@ -624,8 +624,11 @@ try {
                     reply += `\u00a7a\u00a7lSinh v\u1eadt l\u00e0nh (${passiveTotal}):\n`;
                     for (const [n, c] of Object.entries(passiveMap).sort((a, b) => b[1] - a[1])) reply += `\u00a7a  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
                 } else { reply += `\u00a7aSinh v\u1eadt l\u00e0nh: Kh\u00f4ng c\u00f3\n`; }
-                reply += `\u00a7e\u00a7l--------------------------`;
-                player.sendMessage(reply);
+                // Gửi cho tất cả người chơi trong bán kính 24 block
+                const nearbyPlayers = dim.getPlayers({ location: player.location, maxDistance: 24 });
+                for (const p of nearbyPlayers) {
+                    p.sendMessage(reply);
+                }
                 return;
             }
 
@@ -660,7 +663,7 @@ try {
                     if (isHostile) { hostileMap[name] = (hostileMap[name] || 0) + 1; hostileTotal++; }
                     else { passiveMap[name] = (passiveMap[name] || 0) + 1; passiveTotal++; }
                 }
-                let reply = `\u00a7e\u00a7l--- Qu\u00e9t Mob (24 blocks) ---\n`;
+                let reply = ``;
                 if (hostileTotal > 0) {
                     reply += `\u00a76\u00a7lQu\u00e1i v\u1eadt (${hostileTotal}):\n`;
                     for (const [n, c] of Object.entries(hostileMap).sort((a, b) => b[1] - a[1])) reply += `\u00a76  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
@@ -669,8 +672,11 @@ try {
                     reply += `\u00a7a\u00a7lSinh v\u1eadt l\u00e0nh (${passiveTotal}):\n`;
                     for (const [n, c] of Object.entries(passiveMap).sort((a, b) => b[1] - a[1])) reply += `\u00a7a  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
                 } else { reply += `\u00a7aSinh v\u1eadt l\u00e0nh: Kh\u00f4ng c\u00f3\n`; }
-                reply += `\u00a7e\u00a7l--------------------------`;
-                player.sendMessage(reply);
+                // Gửi cho tất cả người chơi trong bán kính 24 block
+                const nearbyPlayers = dim.getPlayers({ location: player.location, maxDistance: 24 });
+                for (const p of nearbyPlayers) {
+                    p.sendMessage(reply);
+                }
                 return;
             }
 
