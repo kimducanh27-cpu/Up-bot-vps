@@ -143,35 +143,46 @@ function getWorldInfo(player) {
         // Weather detection
         let weather = "clear";
         try {
-            // Check if it's raining/thundering in the dimension
             if (world.gameRules && world.gameRules.doWeatherCycle !== false) {
-                // Try to detect weather from rain level or other methods
                 const rainLevel = dim.getWeather ? dim.getWeather() : null;
                 if (rainLevel === "thunder") weather = "thunder";
                 else if (rainLevel === "rain") weather = "rain";
             }
         } catch { }
 
-        // Get biome at player location (Bedrock API may not support this directly)
-        let biome = "unknown";
+        // Get biome at player location
+        let biome = "plains";
         let structure = "";
         try {
-            // Try to get block info which might hint at biome
             const block = dim.getBlock({ x: Math.floor(pos.x), y: Math.floor(pos.y) - 1, z: Math.floor(pos.z) });
             const blockType = block?.typeId?.replace("minecraft:", "") || "";
 
             // Infer biome from surface block
             if (blockType.includes("sand") && !blockType.includes("soul")) biome = "desert";
             else if (blockType.includes("terracotta")) biome = "badlands";
-            else if (blockType.includes("mycelium")) biome = "mushroom_island";
+            else if (blockType.includes("mycelium")) biome = "mushroom_fields";
             else if (blockType.includes("podzol")) biome = "taiga";
-            else if (blockType.includes("snow")) biome = "snowy_plains";
+            else if (blockType.includes("snow") || blockType.includes("ice") || blockType.includes("packed_ice")) biome = "snowy_plains";
             else if (blockType.includes("sculk")) { biome = "deep_dark"; structure = "Ancient City"; }
             else if (blockType.includes("end_stone")) biome = "the_end";
-            else if (blockType.includes("netherrack") || blockType.includes("soul_sand")) biome = "nether";
-            else if (pos.y < 0) biome = "deep_cave";
-            else if (pos.y < 40) biome = "cave";
-            else biome = "overworld";
+            else if (blockType.includes("netherrack") || blockType.includes("soul")) biome = "nether_wastes";
+            else if (blockType.includes("warped")) biome = "warped_forest";
+            else if (blockType.includes("crimson")) biome = "crimson_forest";
+            else if (blockType.includes("basalt") || blockType.includes("blackstone")) biome = "basalt_deltas";
+            else if (blockType.includes("jungle") || blockType.includes("bamboo")) biome = "jungle";
+            else if (blockType.includes("cherry")) biome = "cherry_grove";
+            else if (blockType.includes("mud") || blockType.includes("mangrove")) biome = "mangrove_swamp";
+            else if (blockType.includes("moss")) biome = "lush_caves";
+            else if (blockType.includes("birch")) biome = "birch_forest";
+            else if (blockType.includes("spruce")) biome = "taiga";
+            else if (blockType.includes("oak")) biome = "forest";
+            else if (blockType.includes("dark_oak")) biome = "dark_forest";
+            else if (blockType.includes("acacia")) biome = "savanna";
+            else if (pos.y < 0) biome = "deep_dark";
+            else if (pos.y < 40) biome = "dripstone_caves";
+            else if (blockType.includes("grass") || blockType.includes("dirt")) biome = "plains";
+            else if (blockType.includes("stone") || blockType.includes("deepslate")) biome = "dripstone_caves";
+            else biome = "plains";
 
             // Detect structures
             if (pos.y < -30) structure = "Deep Cave";
@@ -188,7 +199,7 @@ function getWorldInfo(player) {
             structure: structure
         };
     } catch {
-        return { timeOfDay: "day", timeTicks: 0, dimension: "unknown", weather: "clear", biome: "unknown", structure: "" };
+        return { timeOfDay: "day", timeTicks: 0, dimension: "unknown", weather: "clear", biome: "plains", structure: "" };
     }
 }
 
