@@ -5644,7 +5644,7 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.deferUpdate();
 
             const detailMap = isKill ? (stats.mobsKilled || {}) : (stats.blocksBroken || {});
-            const title = isKill ? `⚔️ CHI TIẾT SINH VẬT ĐÃ GIẾT` : `⛏️ CHI TIẾT BLOCK ĐÃ ĐÀO`;
+            const title = isKill ? `CHI TIẾT SINH VẬT ĐÃ GIẾT` : `CHI TIẾT BLOCK ĐÃ ĐÀO`;
             const color = isKill ? '#E74C3C' : '#E67E22';
 
             const imageBuffer = await renderStatsImage(selectedPlayer, detailMap, title, color);
