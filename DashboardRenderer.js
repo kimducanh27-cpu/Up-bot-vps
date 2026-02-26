@@ -60,7 +60,7 @@ module.exports = {
         const displayDiscord = discordTag ? `@${discordTag}` : 'NA';
         const displayMC = player.name;
         // Mobile: ngắt dòng nếu tên quá dài
-        const headerText = `**╰➤ ${displayDiscord} ║ ${displayMC}**`;
+        const headerText = `**╰➤ ${displayDiscord} ║ ${displayMC}**\u2002\u2002\u2002\u2002`;
 
         embeds.push({
             color: statusColor,
@@ -201,15 +201,14 @@ module.exports = {
         embeds.push({
             color: ASSETS.COLORS.WORLD,
             description:
-                `${ASSETS.ICONS.WORLD} **${Math.round(pos.x)}, ${Math.round(pos.y)}, ${Math.round(pos.z)}**\n` +
+                `${ASSETS.ICONS.WORLD} **${Math.round(pos.x)}, ${Math.round(pos.y)}, ${Math.round(pos.z)}**\u2002\u2002\u2002\u2002\u2002\n` +
                 `╰─ ${environment}\n` +
                 `╰─ ${biomeName}${structure}`,
             thumbnail: { url: ASSETS.IMAGES.THUMB_WORLD }
         });
 
-        // 4. Pets
         const pets = player.pets || [];
-        let petContent = `${ASSETS.ICONS.PETS} **Pets**\n`;
+        let petContent = `${ASSETS.ICONS.PETS} **Pets**\u2002\u2002\u2002\u2002\u2002\n`;
         if (pets.length > 0) {
             pets.slice(0, 3).forEach((p, i) => {
                 // Mobile: dùng bullet đơn giản

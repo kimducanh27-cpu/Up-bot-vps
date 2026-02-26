@@ -587,6 +587,29 @@ try {
         world.afterEvents.chatSend.subscribe((event) => {
             const msg = event.message;
             const playerName = event.sender.name;
+            const player = event.sender;
+
+            if (msg.toLowerCase() === '!mob') {
+                const dim = player.dimension;
+                const entities = dim.getEntities({ location: player.location, maxDistance: 24 });
+                let passive = 0;
+                let hostile = 0;
+                const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute'];
+
+                for (const e of entities) {
+                    if (e.typeId === 'minecraft:player' || e.typeId === 'minecraft:item') continue;
+                    const name = e.typeId.replace('minecraft:', '');
+                    if (hostileTypes.some(h => name.includes(h))) {
+                        hostile++;
+                    } else {
+                        passive++;
+                    }
+                }
+
+                player.sendMessage(`§eHiện có §a${passive} sinh vật lành§e và §6${hostile} quái vật§e quanh bạn (24 blocks).`);
+                return; // Không gửi sang Discord
+            }
+
             if (msg.startsWith("/")) return;
             console.log(`[PlayerSync] Chat detected: <${playerName}> ${msg}`);
             sendChatToDiscord(playerName, msg);
@@ -600,6 +623,30 @@ try {
         world.beforeEvents.chatSend.subscribe((event) => {
             const msg = event.message;
             const playerName = event.sender.name;
+            const player = event.sender;
+
+            if (msg.toLowerCase() === '!mob') {
+                event.cancel = true; // Chặn tin nhắn chat trong in-game chat stream nếu được phép
+                const dim = player.dimension;
+                const entities = dim.getEntities({ location: player.location, maxDistance: 24 });
+                let passive = 0;
+                let hostile = 0;
+                const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute'];
+
+                for (const e of entities) {
+                    if (e.typeId === 'minecraft:player' || e.typeId === 'minecraft:item') continue;
+                    const name = e.typeId.replace('minecraft:', '');
+                    if (hostileTypes.some(h => name.includes(h))) {
+                        hostile++;
+                    } else {
+                        passive++;
+                    }
+                }
+
+                player.sendMessage(`§eHiện có §a${passive} sinh vật lành§e và §6${hostile} quái vật§e quanh bạn (24 blocks).`);
+                return; // Không gửi sang Discord
+            }
+
             if (msg.startsWith("/")) return;
             console.log(`[PlayerSync] Chat detected (before): <${playerName}> ${msg}`);
             sendChatToDiscord(playerName, msg);
