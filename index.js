@@ -640,6 +640,7 @@ function getOrCreatePlayerStats(playerName) {
             totalBlocksBroken: 0,
             totalBlocksPlaced: 0,
             totalMobsKilled: 0,
+            totalDeaths: 0,
             blocksBroken: {},
             blocksPlaced: {},
             mobsKilled: {},
@@ -649,7 +650,17 @@ function getOrCreatePlayerStats(playerName) {
             firstJoin: Date.now()
         };
     }
+    // Migration: thêm totalDeaths nếu chưa có (cho player cũ)
+    if (playerStatsData[playerName].totalDeaths === undefined) {
+        playerStatsData[playerName].totalDeaths = 0;
+    }
     return playerStatsData[playerName];
+}
+
+// Clear session stats khi player rời server (tránh delta bị cộng sai khi vào lại)
+function clearPlayerSession(playerName) {
+    lastSessionStats.delete(playerName);
+    console.log(`[PlayerStats] Cleared session for ${playerName}`);
 }
 
 // -------------------- LINKED ACCOUNTS (Discord <-> Minecraft) --------------------
@@ -772,9 +783,9 @@ function updatePlayerStats(playerName, stats) {
     updateStatDelta(stats.blocksBroken, lastStats, 'blocksBroken', ps, 'totalBlocksBroken');
     updateStatDelta(stats.blocksPlaced, lastStats, 'blocksPlaced', ps, 'totalBlocksPlaced');
     updateStatDelta(stats.mobsKilled, lastStats, 'mobsKilled', ps, 'totalMobsKilled');
+    updateStatDelta(stats.deaths, lastStats, 'deaths', ps, 'totalDeaths');
 
     // --- SPECIAL STATS (PlayTime & Distance) ---
-    // These were already delta tracked in original code, but we unify logic
     updateStatDelta(stats.playTimeSeconds, lastStats, 'playTimeSeconds', ps, 'playTime');
     updateStatDelta(stats.distanceTraveled, lastStats, 'distanceTraveled', ps, 'distanceTraveled');
 
@@ -1480,7 +1491,9 @@ const LEADERBOARD_IMAGES = {
     playTime: 'https://cdn3.emoji.gg/emojis/1201-animated-clock.png',
     distance: 'https://cdn3.emoji.gg/emojis/5690-minecraft-spyglass-steve.png',
     blocks: 'https://cdn3.emoji.gg/emojis/1405-diamond-pickaxe.png',
-    kills: 'https://cdn3.emoji.gg/emojis/1405-diamond-sword.png'
+    kills: 'https://cdn3.emoji.gg/emojis/1405-diamond-sword.png',
+    deaths: 'https://cdn3.emoji.gg/emojis/1405-diamond-sword.png',
+    blocksPlaced: 'https://cdn3.emoji.gg/emojis/1405-diamond-pickaxe.png'
 };
 
 function loadLeaderboardData() {
@@ -1579,6 +1592,24 @@ async function updateLeaderboard() {
                 getValue: (stats) => stats.totalMobsKilled || 0,
                 formatValue: (val) => `đã kill **${formatNumber(val)} xác**`,
                 sortDesc: true
+            },
+            {
+                key: 'deaths',
+                title: 'TOP CHẾT',
+                color: 0x95A5A6,
+                image: LEADERBOARD_IMAGES.deaths,
+                getValue: (stats) => stats.totalDeaths || 0,
+                formatValue: (val) => `đã chết **${formatNumber(val)} lần**`,
+                sortDesc: true
+            },
+            {
+                key: 'blocksPlaced',
+                title: 'TOP ĐẶT BLOCK',
+                color: 0x9B59B6,
+                image: LEADERBOARD_IMAGES.blocksPlaced,
+                getValue: (stats) => stats.totalBlocksPlaced || 0,
+                formatValue: (val) => `đã đặt **${formatNumber(val)} block**`,
+                sortDesc: true
             }
         ];
 
@@ -1611,6 +1642,22 @@ async function updateLeaderboard() {
 
                 const embeds = [embed];
 
+                // Thêm Button xem chi tiết cho categories kills và blocks
+                let components = [];
+                if (cat.key === 'kills') {
+                    const detailBtn = new ButtonBuilder()
+                        .setCustomId('view_kill_details')
+                        .setLabel('🔍 Xem chi tiết Kill')
+                        .setStyle(ButtonStyle.Primary);
+                    components = [new ActionRowBuilder().addComponents(detailBtn)];
+                } else if (cat.key === 'blocks') {
+                    const detailBtn = new ButtonBuilder()
+                        .setCustomId('view_block_details')
+                        .setLabel('🔍 Xem chi tiết Block đào')
+                        .setStyle(ButtonStyle.Primary);
+                    components = [new ActionRowBuilder().addComponents(detailBtn)];
+                }
+
                 // Create or update forum thread
                 const threadId = leaderboardData.threads[cat.key];
 
@@ -1620,7 +1667,9 @@ async function updateLeaderboard() {
                         if (thread) {
                             const starterMessage = await thread.fetchStarterMessage();
                             if (starterMessage) {
-                                await starterMessage.edit({ embeds });
+                                const editPayload = { embeds };
+                                if (components.length > 0) editPayload.components = components;
+                                await starterMessage.edit(editPayload);
                                 console.log(`[Leaderboard] Updated: ${cat.title}`);
                                 continue;
                             }
@@ -1631,9 +1680,11 @@ async function updateLeaderboard() {
                 }
 
                 // Create new thread
+                const threadPayload = { embeds };
+                if (components.length > 0) threadPayload.components = components;
                 const thread = await channel.threads.create({
                     name: cat.title,
-                    message: { embeds },
+                    message: threadPayload,
                     autoArchiveDuration: 10080
                 });
 
@@ -1889,22 +1940,24 @@ const addonServer = http.createServer(async (req, res) => {
 
                     if (event === 'join') {
                         if (channel) {
-                            // Gửi tin nhắn có ping @here (ở cuối) + nội dung
-                            const joinMsg = await channel.send({
-                                content: `🟢 **${playerName}** đã vào server @here`
-                            }).catch(() => { });
-
-                            // Sửa lại để xóa @here (Ghost ping)
-                            if (joinMsg) await joinMsg.edit({
-                                content: `🟢 **${playerName}** đã vào server`
+                            // Gửi thẳng @everyone không cần ghost ping
+                            await channel.send({
+                                content: `🟢 **${playerName}** đã vào server @everyone`
                             }).catch(() => { });
                         }
 
-                        if (addonPlayerData.players.length > 0) updatePlayerDashboards(addonPlayerData.players, true);
+                        // Chèn player tạm vào mảng nếu addon chưa kịp gửi data chi tiết
+                        const alreadyInList = addonPlayerData.players.some(p => p.name.toLowerCase() === playerName.toLowerCase());
+                        if (!alreadyInList) {
+                            const tempPlayer = data.data || { name: playerName, health: 20, position: { x: 0, y: 64, z: 0 } };
+                            if (!tempPlayer.name) tempPlayer.name = playerName;
+                            addonPlayerData.players.push(tempPlayer);
+                        }
+                        updatePlayerDashboards(addonPlayerData.players, true);
 
                         // SMART BACKUP LOGIC (Trigger on first join)
-                        const playerCount = data.currentPlayers ? data.currentPlayers.length : 1;
-                        if (playerCount === 1) {
+                        const playerCount = data.currentPlayers ? data.currentPlayers.length : addonPlayerData.players.length;
+                        if (playerCount <= 1) {
                             console.log('[Smart Backup] First player joined! Starting backup...');
                             runBackup(null).then(() => { global.smartBackupLastTime = Date.now(); });
 
@@ -1916,8 +1969,7 @@ const addonServer = http.createServer(async (req, res) => {
                                     await runBackup(null);
                                     global.smartBackupLastTime = Date.now();
                                 } else {
-                                    console.log('[Smart Backup] No players. Final backup & stop.');
-                                    await runBackup(null);
+                                    console.log('[Smart Backup] No players online. Stopping timer.');
                                     clearInterval(global.smartBackupTimer);
                                     global.smartBackupTimer = null;
                                 }
@@ -1926,18 +1978,32 @@ const addonServer = http.createServer(async (req, res) => {
 
                     } else if (event === 'leave') {
                         if (channel) {
-                            // Gửi tin nhắn có ping @here (ở cuối) + nội dung
-                            const leaveMsg = await channel.send({
-                                content: `🔴 **${playerName}** đã thoát server @here`
-                            }).catch(() => { });
-
-                            // Sửa lại để xóa @here (Ghost ping)
-                            if (leaveMsg) await leaveMsg.edit({
-                                content: `🔴 **${playerName}** đã thoát server`
+                            // Gửi thẳng @everyone không cần ghost ping
+                            await channel.send({
+                                content: `🔴 **${playerName}** đã thoát server @everyone`
                             }).catch(() => { });
                         }
 
+                        // Clear session stats (tránh delta bị cộng sai khi vào lại)
+                        clearPlayerSession(playerName);
+
+                        // Lập tức xóa player khỏi cache để vòng lặp sau không ghi đè thành Online
+                        addonPlayerData.players = addonPlayerData.players.filter(
+                            p => p.name.toLowerCase() !== playerName.toLowerCase()
+                        );
+
                         markPlayerOffline(playerName);
+
+                        // Final backup nếu là người cuối cùng rời
+                        const remainingPlayers = addonPlayerData.players.length;
+                        if (remainingPlayers === 0 && global.smartBackupTimer) {
+                            console.log('[Smart Backup] Last player left! Final backup...');
+                            runBackup(null).then(() => {
+                                global.smartBackupLastTime = Date.now();
+                            });
+                            clearInterval(global.smartBackupTimer);
+                            global.smartBackupTimer = null;
+                        }
 
                     } else if (event === 'death') {
                         // DEATH NOTIFICATION -> Send to CHAT_INGAME_CHANNEL
@@ -2071,6 +2137,36 @@ const addonServer = http.createServer(async (req, res) => {
                             console.error('[Link] Error updating Discord UI:', e);
                         }
                     }
+
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: true }));
+                    return;
+                }
+
+                // Handle !nether - Tính tọa độ Nether từ Overworld (chia 8)
+                if (message.toLowerCase() === '!nether') {
+                    const player = addonPlayerData.players.find(
+                        p => p.name.toLowerCase() === playerName.toLowerCase()
+                    );
+
+                    let replyMsg;
+                    if (!player || !player.position) {
+                        replyMsg = `§c[Bot] §fKhông tìm thấy tọa độ của bạn! Hãy đợi addon cập nhật.`;
+                    } else if (player.dimension && player.dimension !== 'overworld') {
+                        replyMsg = `§c[Bot] §fBạn phải đứng ở Overworld để dùng lệnh này! (Đang ở: ${player.dimension})`;
+                    } else {
+                        const netherX = Math.floor(player.position.x / 8);
+                        const netherZ = Math.floor(player.position.z / 8);
+                        const currentY = Math.floor(player.position.y);
+                        replyMsg = `§b[Bot] §aTọa độ Nether tương ứng: §eX: ${netherX}§a, §eY: ${currentY}§a, §eZ: ${netherZ}`;
+                    }
+
+                    addonMessageQueue.push({
+                        type: 'chat',
+                        sender: 'Bot',
+                        target: playerName,
+                        message: replyMsg
+                    });
 
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.end(JSON.stringify({ success: true }));
@@ -3444,6 +3540,26 @@ async function runBackup(message) {
         // Update last backup time
         lastBackupTime = Date.now();
 
+        // === DỌN DẸP FILE CŨ: Giữ lại 3 bản mới nhất ===
+        try {
+            const MAX_BACKUPS = 3;
+            const allZips = fs.readdirSync(localDir)
+                .filter(f => f.startsWith('world_') && f.endsWith('.zip'))
+                .sort(); // Sắp xếp theo tên (timestamp) -> cũ nhất trước
+
+            if (allZips.length > MAX_BACKUPS) {
+                const toDelete = allZips.slice(0, allZips.length - MAX_BACKUPS);
+                for (const oldFile of toDelete) {
+                    const oldPath = path.join(localDir, oldFile);
+                    fs.unlinkSync(oldPath);
+                    console.log(`[Backup] Deleted old backup: ${oldFile}`);
+                }
+                console.log(`[Backup] Cleanup: Kept ${MAX_BACKUPS}, deleted ${toDelete.length} old backups`);
+            }
+        } catch (cleanupErr) {
+            console.error('[Backup] Cleanup error:', cleanupErr.message);
+        }
+
     } catch (error) {
         console.error('[Backup] Error:', error);
         let errorMsg = error.message;
@@ -4524,6 +4640,59 @@ Trả về JSON (CHỈ JSON, không có text khác):
                             } else {
                                 await message.channel.send(`🎮 Không có ai online hoặc addon chưa kết nối.`);
                             }
+                        } else if (cmdLower === '!reset') {
+                            // Admin only - reset bảng xếp hạng
+                            if (message.author.id !== CONFIG.ADMIN_ID) {
+                                return message.reply('❌ Chỉ Admin mới có quyền dùng lệnh này!');
+                            }
+                            try {
+                                // Backup trước khi reset
+                                const backupPath = path.join(__dirname, 'player_stats_backup_admin.json');
+                                fs.writeFileSync(backupPath, JSON.stringify(playerStatsData, null, 2), 'utf-8');
+                                console.log(`[Admin] Stats backed up to ${backupPath}`);
+
+                                // Reset data
+                                playerStatsData = {};
+                                savePlayerStats(playerStatsData);
+                                lastSessionStats.clear();
+
+                                // Reset leaderboard threads
+                                leaderboardData = { threads: {} };
+                                saveLeaderboardData(leaderboardData);
+
+                                await message.reply('✅ **Đã reset toàn bộ bảng xếp hạng!**\n📦 Dữ liệu cũ đã được backup vào `player_stats_backup_admin.json`\n🔄 Leaderboard sẽ tự tạo thread mới lần cập nhật tiếp theo.');
+                            } catch (err) {
+                                console.error('[Admin Reset] Error:', err);
+                                await message.reply(`❌ Lỗi khi reset: ${err.message}`);
+                            }
+                            return;
+                        } else if (cmdLower === '!khoiphuc') {
+                            // Admin only - khôi phục bảng xếp hạng
+                            if (message.author.id !== CONFIG.ADMIN_ID) {
+                                return message.reply('❌ Chỉ Admin mới có quyền dùng lệnh này!');
+                            }
+                            try {
+                                const backupPath = path.join(__dirname, 'player_stats_backup_admin.json');
+                                if (!fs.existsSync(backupPath)) {
+                                    return message.reply('❌ Không tìm thấy file backup! Chưa có bản sao lưu nào.');
+                                }
+
+                                const backupData = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+                                playerStatsData = backupData;
+                                savePlayerStats(playerStatsData);
+                                lastSessionStats.clear();
+
+                                // Reset leaderboard threads để vẽ mới
+                                leaderboardData = { threads: {} };
+                                saveLeaderboardData(leaderboardData);
+
+                                const playerCount = Object.keys(playerStatsData).length;
+                                await message.reply(`✅ **Đã khôi phục thành công dữ liệu!**\n📊 Đã tải lại stats cho **${playerCount}** người chơi.\n🔄 Leaderboard sẽ tự vẽ mới lần cập nhật tiếp theo.`);
+                            } catch (err) {
+                                console.error('[Admin Restore] Error:', err);
+                                await message.reply(`❌ Lỗi khi khôi phục: ${err.message}`);
+                            }
+                            return;
                         } else if (cmdLower === '!rules') {
                             const rulesEmbed = new EmbedBuilder()
                                 .setTitle("📜 LUẬT SERVER ONE BLOCK")
@@ -5275,6 +5444,179 @@ client.on('interactionCreate', async (interaction) => {
                 ephemeral: true
             }).catch(() => { });
         }
+    }
+});
+
+// -------------------- CANVAS STATS RENDERER --------------------
+const { createCanvas } = require('canvas');
+
+async function renderStatsImage(playerName, statsMap, title, color = '#3498DB') {
+    const items = Object.entries(statsMap || {})
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 20); // Top 20 items
+
+    const rowHeight = 28;
+    const headerHeight = 80;
+    const padding = 20;
+    const width = 800;
+    const height = headerHeight + padding * 2 + Math.max(items.length, 1) * rowHeight + 40;
+
+    const canvas = createCanvas(width, height);
+    const ctx = canvas.getContext('2d');
+
+    // Background
+    ctx.fillStyle = '#1a1a2e';
+    ctx.fillRect(0, 0, width, height);
+
+    // Header bar
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, width, headerHeight);
+
+    // Title
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 24px Arial';
+    ctx.fillText(title, padding, 35);
+
+    // Player name
+    ctx.font = '18px Arial';
+    ctx.fillStyle = '#E0E0E0';
+    ctx.fillText(`Người chơi: ${playerName}`, padding, 60);
+
+    // Column headers
+    const startY = headerHeight + padding;
+    ctx.fillStyle = '#16213e';
+    ctx.fillRect(0, startY, width, rowHeight);
+    ctx.fillStyle = '#AAAAAA';
+    ctx.font = 'bold 14px Arial';
+    ctx.fillText('#', padding, startY + 19);
+    ctx.fillText('Tên', 60, startY + 19);
+    ctx.fillText('Số lượng', width - 150, startY + 19);
+
+    if (items.length === 0) {
+        ctx.fillStyle = '#888888';
+        ctx.font = '16px Arial';
+        ctx.fillText('Chưa có dữ liệu', padding, startY + rowHeight + 19);
+    } else {
+        items.forEach(([name, count], idx) => {
+            const y = startY + (idx + 1) * rowHeight;
+            // Alternate row bg
+            ctx.fillStyle = idx % 2 === 0 ? '#1a1a2e' : '#16213e';
+            ctx.fillRect(0, y, width, rowHeight);
+
+            // Medal for top 3
+            ctx.font = '14px Arial';
+            ctx.fillStyle = idx === 0 ? '#FFD700' : idx === 1 ? '#C0C0C0' : idx === 2 ? '#CD7F32' : '#CCCCCC';
+            ctx.fillText(`${idx + 1}`, padding, y + 19);
+
+            // Item name (format minecraft id)
+            ctx.fillStyle = '#FFFFFF';
+            const displayName = name.replace(/minecraft:/gi, '').replace(/_/g, ' ');
+            ctx.fillText(displayName.length > 40 ? displayName.slice(0, 37) + '...' : displayName, 60, y + 19);
+
+            // Count
+            ctx.fillStyle = '#4CAF50';
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText(count.toLocaleString('vi-VN'), width - 150, y + 19);
+        });
+    }
+
+    // Footer
+    const footerY = height - 20;
+    ctx.fillStyle = '#555555';
+    ctx.font = '12px Arial';
+    ctx.fillText(`Cập nhật: ${new Date().toLocaleString('vi-VN')}`, padding, footerY);
+
+    return canvas.toBuffer('image/png');
+}
+
+// -------------------- LEADERBOARD DETAIL BUTTON HANDLER --------------------
+client.on('interactionCreate', async (interaction) => {
+    try {
+        // Handle button clicks for leaderboard detail
+        if (interaction.isButton() && (interaction.customId === 'view_kill_details' || interaction.customId === 'view_block_details')) {
+            const isKill = interaction.customId === 'view_kill_details';
+            const statKey = isKill ? 'totalMobsKilled' : 'totalBlocksBroken';
+            const label = isKill ? 'Kill' : 'Block đào';
+
+            // Get top 25 players for select menu
+            const allPlayers = Object.entries(playerStatsData)
+                .map(([name, stats]) => ({ name, value: stats[statKey] || 0 }))
+                .filter(p => p.value > 0)
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 25);
+
+            if (allPlayers.length === 0) {
+                return interaction.reply({
+                    content: '❌ Chưa có dữ liệu thống kê!',
+                    ephemeral: true
+                });
+            }
+
+            const { StringSelectMenuBuilder } = require('discord.js');
+            const selectMenu = new StringSelectMenuBuilder()
+                .setCustomId(isKill ? 'select_kill_player' : 'select_block_player')
+                .setPlaceholder(`Chọn người chơi để xem chi tiết ${label}...`)
+                .addOptions(allPlayers.map(p => ({
+                    label: p.name,
+                    description: `${formatNumber(p.value)} ${isKill ? 'xác' : 'block'}`,
+                    value: p.name
+                })));
+
+            const row = new ActionRowBuilder().addComponents(selectMenu);
+            await interaction.reply({
+                content: `🔍 **Chọn người chơi để xem ${label} chi tiết:**`,
+                components: [row],
+                ephemeral: true
+            });
+            return;
+        }
+
+        // Handle select menu for killing details
+        if (interaction.isStringSelectMenu() && (interaction.customId === 'select_kill_player' || interaction.customId === 'select_block_player')) {
+            const isKill = interaction.customId === 'select_kill_player';
+            const selectedPlayer = interaction.values[0];
+            const stats = playerStatsData[selectedPlayer];
+
+            if (!stats) {
+                return interaction.update({
+                    content: `❌ Không tìm thấy dữ liệu cho **${selectedPlayer}**!`,
+                    components: [],
+                    ephemeral: true
+                });
+            }
+
+            await interaction.deferUpdate();
+
+            const detailMap = isKill ? (stats.mobsKilled || {}) : (stats.blocksBroken || {});
+            const title = isKill ? `⚔️ CHI TIẾT SINH VẬT ĐÃ GIẾT` : `⛏️ CHI TIẾT BLOCK ĐÃ ĐÀO`;
+            const color = isKill ? '#E74C3C' : '#E67E22';
+
+            const imageBuffer = await renderStatsImage(selectedPlayer, detailMap, title, color);
+            const attachment = new AttachmentBuilder(imageBuffer, { name: 'stats_detail.png' });
+
+            await interaction.editReply({
+                content: null,
+                embeds: [new EmbedBuilder()
+                    .setTitle(title)
+                    .setDescription(`Người chơi: **${selectedPlayer}**`)
+                    .setImage('attachment://stats_detail.png')
+                    .setColor(isKill ? 0xE74C3C : 0xE67E22)
+                    .setTimestamp()
+                ],
+                files: [attachment],
+                components: []
+            });
+            return;
+        }
+    } catch (err) {
+        console.error('[Leaderboard Detail] Error:', err);
+        try {
+            if (interaction.deferred || interaction.replied) {
+                await interaction.editReply({ content: '❌ Có lỗi xảy ra!', components: [] }).catch(() => { });
+            } else {
+                await interaction.reply({ content: '❌ Có lỗi xảy ra!', ephemeral: true }).catch(() => { });
+            }
+        } catch { }
     }
 });
 
