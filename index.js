@@ -760,20 +760,23 @@ function updatePlayerStats(playerName, stats) {
 
     if (!lastStats) {
         // First time seeing this player since bot start
-        // Khởi tạo lastStats = 0 để Delta lần đầu = toàn bộ stats hiện tại
-        // Giúp thu nạp công sức của player đang chơi trước khi bot online
+        // Khởi tạo lastStats = stats HIỆN TẠI để Delta lần đầu = 0
+        // Tránh cộng ảo toàn bộ session cũ mỗi lần bot restart
         lastStats = {
-            blocksBroken: 0,
-            blocksPlaced: 0,
-            mobsKilled: 0,
-            playTimeSeconds: 0,
-            distanceTraveled: 0,
-            blocksBrokenDetails: {},
-            blocksPlacedDetails: {},
-            mobsKilledDetails: {}
+            blocksBroken: stats.blocksBroken || 0,
+            blocksPlaced: stats.blocksPlaced || 0,
+            mobsKilled: stats.mobsKilled || 0,
+            deaths: stats.deaths || 0,
+            playTimeSeconds: stats.playTimeSeconds || 0,
+            distanceTraveled: stats.distanceTraveled || 0,
+            blocksBrokenDetails: { ...(stats.blocksBrokenDetails || {}) },
+            blocksPlacedDetails: { ...(stats.blocksPlacedDetails || {}) },
+            mobsKilledDetails: { ...(stats.mobsKilledDetails || {}) }
         };
         lastSessionStats.set(playerName, lastStats);
-        // Không return - tiếp tục chạy Delta bên dưới để cộng dồn stats hiện có
+        // Return ở đây - lần đầu chỉ lưu mốc, KHÔNG cộng delta
+        // Từ lần thứ 2 trở đi mới tính delta chính xác
+        return;
     }
 
     // --- SCALAR STATS ---
