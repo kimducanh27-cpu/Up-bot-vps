@@ -191,7 +191,7 @@ module.exports = {
         const environment = getEnvironmentName(player.dimension, pos.y);
 
         // Structure (Dòng dưới cùng nếu có, hoặc để trống)
-        const structure = player.worldInfo?.structure ? `\n╰─ ${player.worldInfo.structure}` : '';
+        const structure = player.worldInfo?.structure ? `\n╰─ ${player.worldInfo.structure}\u2003\u2003\u2003` : '';
 
         // Format:
         // 384, 77, -827
@@ -201,21 +201,21 @@ module.exports = {
         embeds.push({
             color: ASSETS.COLORS.WORLD,
             description:
-                `${ASSETS.ICONS.WORLD} **${Math.round(pos.x)}, ${Math.round(pos.y)}, ${Math.round(pos.z)}**\u2002\u2002\u2002\u2002\u2002\n` +
-                `╰─ ${environment}\n` +
-                `╰─ ${biomeName}${structure}`,
+                `${ASSETS.ICONS.WORLD} **${Math.round(pos.x)}, ${Math.round(pos.y)}, ${Math.round(pos.z)}**\u2003\u2003\u2003\n` +
+                `╰─ ${environment}\u2003\u2003\u2003\n` +
+                `╰─ ${biomeName}\u2003\u2003\u2003${structure}`,
             thumbnail: { url: ASSETS.IMAGES.THUMB_WORLD }
         });
 
         const pets = player.pets || [];
-        let petContent = `${ASSETS.ICONS.PETS} **Pets**\u2002\u2002\u2002\u2002\u2002\n`;
+        let petContent = `${ASSETS.ICONS.PETS} **Pets**\u2003\u2003\u2003\n`;
         if (pets.length > 0) {
             pets.slice(0, 3).forEach((p, i) => {
                 // Mobile: dùng bullet đơn giản
-                petContent += `╰─ ${p.name || p.type || 'Pet'}\n`;
+                petContent += `╰─ ${p.name || p.type || 'Pet'}\u2003\u2003\u2003\n`;
             });
         } else {
-            petContent += `╰─ *Chưa có*`;
+            petContent += `╰─ *Chưa có*\u2003\u2003\u2003`;
         }
 
         embeds.push({

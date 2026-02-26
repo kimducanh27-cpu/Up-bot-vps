@@ -1532,7 +1532,7 @@ function getMedalEmoji(rank) {
     if (rank === 2) return '🥈';
     if (rank === 3) return '🥉';
     // Use an invisible character and number for alignment with emojis
-    return ` \`${String(rank).padStart(2, '0')}\``;
+    return `\` ${String(rank).padStart(2, '0')} \``;
 }
 
 function getPlayerThreadLink(playerName, guildId) {
