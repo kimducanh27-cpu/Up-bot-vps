@@ -1,36 +1,47 @@
-const http = require('http');
+require('dotenv').config();
+const { TelegramClient } = require('telegram');
+const { StringSession } = require('telegram/sessions');
+const fs = require('fs');
 
-const payload = JSON.stringify({
-    type: "chat",
-    secret: "minecraft-discord-sync-2024",
-    playerName: "TestBot",
-    message: "Hello from test script!",
-    serverTime: Date.now()
-});
+async function test() {
+    const apiId = Number(process.env.TELEGRAM_API_ID);
+    const apiHash = process.env.TELEGRAM_API_HASH;
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
 
-const options = {
-    hostname: 'localhost',
-    port: 8080,
-    path: '/player-update',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': payload.length
+    console.log("Checking API ID:", apiId);
+    console.log("Checking API Hash:", apiHash ? "Loaded" : "Missing");
+    console.log("Checking Bot Token:", botToken ? "Loaded" : "Missing");
+
+    if (!apiId || !apiHash || !botToken) {
+        return console.error("MISSING CREDENTIALS IN .ENV");
     }
-};
 
-const req = http.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
-    res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-        console.log(`BODY: ${chunk}`);
-    });
-});
+    try {
+        const client = new TelegramClient(new StringSession(''), apiId, apiHash, {
+            connectionRetries: 5,
+        });
 
-req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
-});
+        await client.start({
+            botAuthToken: botToken,
+        });
 
-// Write data to request body
-req.write(payload);
-req.end();
+        console.log("✅ Successfully connected to Telegram via MTProto!");
+
+        // Test sending a small dummy file
+        fs.writeFileSync("dummy.txt", "Hello World! This is a test file for MTProto.");
+
+        await client.sendFile("7155481287", {
+            file: "dummy.txt",
+            caption: "Test Upload from script",
+        });
+
+        console.log("✅ Successfully sent file via MTProto!");
+
+        fs.unlinkSync("dummy.txt");
+        await client.disconnect();
+    } catch (e) {
+        console.error("❌ ERROR:", e);
+    }
+}
+
+test();
