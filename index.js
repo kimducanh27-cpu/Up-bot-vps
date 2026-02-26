@@ -760,25 +760,20 @@ function updatePlayerStats(playerName, stats) {
 
     if (!lastStats) {
         // First time seeing this player since bot start
-        // To avoid double counting (if bot restarted but server didn't), 
-        // we initialize 'last' with 'current' so delta is 0 for this first packet.
-        // UNLESS it's a fresh server start (current starts at 0 or small), but we can't distinguish easily.
-        // Safe bet: Assume existing session stats are already in DB, so ignore initial backlog.
+        // Khởi tạo lastStats = 0 để Delta lần đầu = toàn bộ stats hiện tại
+        // Giúp thu nạp công sức của player đang chơi trước khi bot online
         lastStats = {
-            blocksBroken: stats.blocksBroken || 0,
-            blocksPlaced: stats.blocksPlaced || 0,
-            mobsKilled: stats.mobsKilled || 0,
-            playTimeSeconds: stats.playTimeSeconds || 0,
-            distanceTraveled: stats.distanceTraveled || 0,
-            blocksBrokenDetails: { ...(stats.blocksBrokenDetails || {}) },
-            blocksPlacedDetails: { ...(stats.blocksPlacedDetails || {}) },
-            mobsKilledDetails: { ...(stats.mobsKilledDetails || {}) }
+            blocksBroken: 0,
+            blocksPlaced: 0,
+            mobsKilled: 0,
+            playTimeSeconds: 0,
+            distanceTraveled: 0,
+            blocksBrokenDetails: {},
+            blocksPlacedDetails: {},
+            mobsKilledDetails: {}
         };
         lastSessionStats.set(playerName, lastStats);
-
-        // We do NOT update ps (lifetime) here because we assume they are already saved.
-        // We only start counting *changes* from now on.
-        return;
+        // Không return - tiếp tục chạy Delta bên dưới để cộng dồn stats hiện có
     }
 
     // --- SCALAR STATS ---
@@ -1626,15 +1621,17 @@ async function updateLeaderboard() {
                     .sort((a, b) => b.value - a.value)
                     .slice(0, 10);
 
-                if (sorted.length === 0) continue;
-
                 // Build leaderboard text
                 let description = '';
-                sorted.forEach((player, index) => {
-                    const medal = getMedalEmoji(index + 1);
-                    const playerLink = getPlayerThreadLink(player.name, guildId);
-                    description += `${medal} │ ${playerLink}: ${cat.formatValue(player.value)}\n`;
-                });
+                if (sorted.length === 0) {
+                    description = '*Chưa có ai ghi nhận chỉ số này. Hãy vào game và trở thành người đầu tiên!*\n';
+                } else {
+                    sorted.forEach((player, index) => {
+                        const medal = getMedalEmoji(index + 1);
+                        const playerLink = getPlayerThreadLink(player.name, guildId);
+                        description += `${medal} │ ${playerLink}: ${cat.formatValue(player.value)}\n`;
+                    });
+                }
 
                 description += `\n*Cập nhật lúc <t:${Math.floor(Date.now() / 1000)}:R>*`;
 
@@ -1651,13 +1648,13 @@ async function updateLeaderboard() {
                 if (cat.key === 'kills') {
                     const detailBtn = new ButtonBuilder()
                         .setCustomId('view_kill_details')
-                        .setLabel('🔍 Xem chi tiết Kill')
+                        .setLabel('Xem chi tiết Kill')
                         .setStyle(ButtonStyle.Primary);
                     components = [new ActionRowBuilder().addComponents(detailBtn)];
                 } else if (cat.key === 'blocks') {
                     const detailBtn = new ButtonBuilder()
                         .setCustomId('view_block_details')
-                        .setLabel('🔍 Xem chi tiết Block đào')
+                        .setLabel('Xem chi tiết Block đào')
                         .setStyle(ButtonStyle.Primary);
                     components = [new ActionRowBuilder().addComponents(detailBtn)];
                 }
@@ -5455,13 +5452,17 @@ client.on('interactionCreate', async (interaction) => {
 // Đã khai báo createCanvas ở đầu file
 
 async function renderStatsImage(playerName, statsMap, title, color = '#3498DB') {
+    const ICON_DIR = path.join(__dirname, '1.21.8');
+
     const items = Object.entries(statsMap || {})
         .sort((a, b) => b[1] - a[1])
         .slice(0, 20); // Top 20 items
 
-    const rowHeight = 28;
+    const rowHeight = 32;
     const headerHeight = 80;
     const padding = 20;
+    const iconSize = 22;
+    const nameX = 88; // Lùi ra để chừa chỗ icon
     const width = 800;
     const height = headerHeight + padding * 2 + Math.max(items.length, 1) * rowHeight + 40;
 
@@ -5492,15 +5493,40 @@ async function renderStatsImage(playerName, statsMap, title, color = '#3498DB') 
     ctx.fillRect(0, startY, width, rowHeight);
     ctx.fillStyle = '#AAAAAA';
     ctx.font = 'bold 14px Arial';
-    ctx.fillText('#', padding, startY + 19);
-    ctx.fillText('Tên', 60, startY + 19);
-    ctx.fillText('Số lượng', width - 150, startY + 19);
+    ctx.fillText('#', padding, startY + 21);
+    ctx.fillText('Tên', nameX, startY + 21);
+    ctx.fillText('Số lượng', width - 150, startY + 21);
 
     if (items.length === 0) {
         ctx.fillStyle = '#888888';
         ctx.font = '16px Arial';
-        ctx.fillText('Chưa có dữ liệu', padding, startY + rowHeight + 19);
+        ctx.fillText('Chưa có dữ liệu', padding, startY + rowHeight + 21);
     } else {
+        // Hàm tìm icon từ thư mục 1.21.8
+        function findIconPath(rawName) {
+            const cleanName = rawName.replace(/minecraft:/gi, '').trim();
+            const fileName = cleanName + '.png';
+            // Thử tìm theo thứ tự: blocks -> items -> entity
+            const candidates = [
+                path.join(ICON_DIR, 'blocks', fileName),
+                path.join(ICON_DIR, 'items', fileName),
+            ];
+            for (const p of candidates) {
+                if (fs.existsSync(p)) return p;
+            }
+            return null;
+        }
+
+        // Pre-load tất cả icons (song song)
+        const iconPromises = items.map(async ([name]) => {
+            const iconPath = findIconPath(name);
+            if (iconPath) {
+                try { return await loadImage(iconPath); } catch { return null; }
+            }
+            return null;
+        });
+        const icons = await Promise.all(iconPromises);
+
         items.forEach(([name, count], idx) => {
             const y = startY + (idx + 1) * rowHeight;
             // Alternate row bg
@@ -5510,17 +5536,33 @@ async function renderStatsImage(playerName, statsMap, title, color = '#3498DB') 
             // Medal for top 3
             ctx.font = '14px Arial';
             ctx.fillStyle = idx === 0 ? '#FFD700' : idx === 1 ? '#C0C0C0' : idx === 2 ? '#CD7F32' : '#CCCCCC';
-            ctx.fillText(`${idx + 1}`, padding, y + 19);
+            ctx.fillText(`${idx + 1}`, padding, y + 21);
+
+            // Draw icon nếu có
+            const icon = icons[idx];
+            const iconX = 58;
+            const iconY = y + Math.floor((rowHeight - iconSize) / 2);
+            if (icon) {
+                try { ctx.drawImage(icon, iconX, iconY, iconSize, iconSize); } catch { }
+            } else {
+                // Vẽ placeholder [?] nếu không tìm thấy icon
+                ctx.fillStyle = '#555555';
+                ctx.fillRect(iconX, iconY, iconSize, iconSize);
+                ctx.fillStyle = '#999999';
+                ctx.font = '10px Arial';
+                ctx.fillText('?', iconX + 7, iconY + 15);
+            }
 
             // Item name (format minecraft id)
+            ctx.font = '14px Arial';
             ctx.fillStyle = '#FFFFFF';
             const displayName = name.replace(/minecraft:/gi, '').replace(/_/g, ' ');
-            ctx.fillText(displayName.length > 40 ? displayName.slice(0, 37) + '...' : displayName, 60, y + 19);
+            ctx.fillText(displayName.length > 35 ? displayName.slice(0, 32) + '...' : displayName, nameX, y + 21);
 
             // Count
             ctx.fillStyle = '#4CAF50';
             ctx.font = 'bold 14px Arial';
-            ctx.fillText(count.toLocaleString('vi-VN'), width - 150, y + 19);
+            ctx.fillText(count.toLocaleString('vi-VN'), width - 150, y + 21);
         });
     }
 
@@ -5568,7 +5610,7 @@ client.on('interactionCreate', async (interaction) => {
 
             const row = new ActionRowBuilder().addComponents(selectMenu);
             await interaction.reply({
-                content: `🔍 **Chọn người chơi để xem ${label} chi tiết:**`,
+                content: `**Chọn người chơi để xem ${label} chi tiết:**`,
                 components: [row],
                 ephemeral: true
             });
