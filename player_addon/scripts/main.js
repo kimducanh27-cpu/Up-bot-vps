@@ -603,22 +603,30 @@ try {
             if (msg.toLowerCase() === '!mob') {
                 const dim = player.dimension;
                 const entities = dim.getEntities({ location: player.location, maxDistance: 24 });
-                let passive = 0;
-                let hostile = 0;
-                const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute'];
-
+                const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute', 'hoglin', 'guardian', 'elder_guardian', 'vex', 'breeze'];
+                const hostileMap = {};
+                const passiveMap = {};
+                let hostileTotal = 0;
+                let passiveTotal = 0;
                 for (const e of entities) {
                     if (e.typeId === 'minecraft:player' || e.typeId === 'minecraft:item') continue;
                     const name = e.typeId.replace('minecraft:', '');
-                    if (hostileTypes.some(h => name.includes(h))) {
-                        hostile++;
-                    } else {
-                        passive++;
-                    }
+                    const isHostile = hostileTypes.some(h => name.includes(h));
+                    if (isHostile) { hostileMap[name] = (hostileMap[name] || 0) + 1; hostileTotal++; }
+                    else { passiveMap[name] = (passiveMap[name] || 0) + 1; passiveTotal++; }
                 }
-
-                player.sendMessage(`§eHiện có §a${passive} sinh vật lành§e và §6${hostile} quái vật§e quanh bạn (24 blocks).`);
-                return; // Không gửi sang Discord
+                let reply = `\u00a7e\u00a7l--- Qu\u00e9t Mob (24 blocks) ---\n`;
+                if (hostileTotal > 0) {
+                    reply += `\u00a76\u00a7lQu\u00e1i v\u1eadt (${hostileTotal}):\n`;
+                    for (const [n, c] of Object.entries(hostileMap).sort((a, b) => b[1] - a[1])) reply += `\u00a76  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
+                } else { reply += `\u00a76Qu\u00e1i v\u1eadt: Kh\u00f4ng c\u00f3\n`; }
+                if (passiveTotal > 0) {
+                    reply += `\u00a7a\u00a7lSinh v\u1eadt l\u00e0nh (${passiveTotal}):\n`;
+                    for (const [n, c] of Object.entries(passiveMap).sort((a, b) => b[1] - a[1])) reply += `\u00a7a  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
+                } else { reply += `\u00a7aSinh v\u1eadt l\u00e0nh: Kh\u00f4ng c\u00f3\n`; }
+                reply += `\u00a7e\u00a7l--------------------------`;
+                player.sendMessage(reply);
+                return;
             }
 
             if (msg.startsWith("/")) return;
@@ -637,25 +645,33 @@ try {
             const player = event.sender;
 
             if (msg.toLowerCase() === '!mob') {
-                event.cancel = true; // Chặn tin nhắn chat trong in-game chat stream nếu được phép
+                event.cancel = true;
                 const dim = player.dimension;
                 const entities = dim.getEntities({ location: player.location, maxDistance: 24 });
-                let passive = 0;
-                let hostile = 0;
-                const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute'];
-
+                const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute', 'hoglin', 'guardian', 'elder_guardian', 'vex', 'breeze'];
+                const hostileMap = {};
+                const passiveMap = {};
+                let hostileTotal = 0;
+                let passiveTotal = 0;
                 for (const e of entities) {
                     if (e.typeId === 'minecraft:player' || e.typeId === 'minecraft:item') continue;
                     const name = e.typeId.replace('minecraft:', '');
-                    if (hostileTypes.some(h => name.includes(h))) {
-                        hostile++;
-                    } else {
-                        passive++;
-                    }
+                    const isHostile = hostileTypes.some(h => name.includes(h));
+                    if (isHostile) { hostileMap[name] = (hostileMap[name] || 0) + 1; hostileTotal++; }
+                    else { passiveMap[name] = (passiveMap[name] || 0) + 1; passiveTotal++; }
                 }
-
-                player.sendMessage(`§eHiện có §a${passive} sinh vật lành§e và §6${hostile} quái vật§e quanh bạn (24 blocks).`);
-                return; // Không gửi sang Discord
+                let reply = `\u00a7e\u00a7l--- Qu\u00e9t Mob (24 blocks) ---\n`;
+                if (hostileTotal > 0) {
+                    reply += `\u00a76\u00a7lQu\u00e1i v\u1eadt (${hostileTotal}):\n`;
+                    for (const [n, c] of Object.entries(hostileMap).sort((a, b) => b[1] - a[1])) reply += `\u00a76  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
+                } else { reply += `\u00a76Qu\u00e1i v\u1eadt: Kh\u00f4ng c\u00f3\n`; }
+                if (passiveTotal > 0) {
+                    reply += `\u00a7a\u00a7lSinh v\u1eadt l\u00e0nh (${passiveTotal}):\n`;
+                    for (const [n, c] of Object.entries(passiveMap).sort((a, b) => b[1] - a[1])) reply += `\u00a7a  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
+                } else { reply += `\u00a7aSinh v\u1eadt l\u00e0nh: Kh\u00f4ng c\u00f3\n`; }
+                reply += `\u00a7e\u00a7l--------------------------`;
+                player.sendMessage(reply);
+                return;
             }
 
             if (msg.startsWith("/")) return;
