@@ -1962,23 +1962,29 @@ const addonServer = http.createServer(async (req, res) => {
 
                         // SMART BACKUP LOGIC (Trigger on first join)
                         const playerCount = data.currentPlayers ? data.currentPlayers.length : addonPlayerData.players.length;
-                        if (playerCount <= 1) {
+                        const BACKUP_COOLDOWN = 10 * 60 * 1000; // 10 phút minimum giữa các lần backup
+                        const timeSinceLastBackup = Date.now() - (global.smartBackupLastTime || 0);
+
+                        if (playerCount <= 1 && timeSinceLastBackup >= BACKUP_COOLDOWN) {
                             console.log('[Smart Backup] First player joined! Starting backup...');
                             runBackup(null).then(() => { global.smartBackupLastTime = Date.now(); });
 
-                            // Start 15m interval
-                            if (global.smartBackupTimer) clearInterval(global.smartBackupTimer);
-                            global.smartBackupTimer = setInterval(async () => {
-                                const currentP = addonPlayerData.players?.length || 0;
-                                if (currentP > 0) {
-                                    await runBackup(null);
-                                    global.smartBackupLastTime = Date.now();
-                                } else {
-                                    console.log('[Smart Backup] No players online. Stopping timer.');
-                                    clearInterval(global.smartBackupTimer);
-                                    global.smartBackupTimer = null;
-                                }
-                            }, 15 * 60 * 1000);
+                            // Start 15m interval (chỉ tạo nếu chưa có)
+                            if (!global.smartBackupTimer) {
+                                global.smartBackupTimer = setInterval(async () => {
+                                    const currentP = addonPlayerData.players?.length || 0;
+                                    if (currentP > 0) {
+                                        await runBackup(null);
+                                        global.smartBackupLastTime = Date.now();
+                                    } else {
+                                        console.log('[Smart Backup] No players online. Stopping timer.');
+                                        clearInterval(global.smartBackupTimer);
+                                        global.smartBackupTimer = null;
+                                    }
+                                }, 15 * 60 * 1000);
+                            }
+                        } else if (playerCount <= 1) {
+                            console.log(`[Smart Backup] Skipped - cooldown (${Math.round((BACKUP_COOLDOWN - timeSinceLastBackup) / 1000)}s remaining)`);
                         }
 
                     } else if (event === 'leave') {
