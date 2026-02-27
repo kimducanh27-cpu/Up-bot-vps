@@ -602,7 +602,7 @@ try {
 
             if (msg.toLowerCase() === '!mob') {
                 const dim = player.dimension;
-                const entities = dim.getEntities({ location: player.location, maxDistance: 24 });
+                const entities = dim.getEntities({ location: player.location, maxDistance: 48 });
                 const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute', 'hoglin', 'guardian', 'elder_guardian', 'vex', 'breeze'];
                 const hostileMap = {};
                 const passiveMap = {};
@@ -625,7 +625,7 @@ try {
                     for (const [n, c] of Object.entries(passiveMap).sort((a, b) => b[1] - a[1])) reply += `\u00a7a  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
                 } else { reply += `\u00a7aSinh v\u1eadt l\u00e0nh: Kh\u00f4ng c\u00f3\n`; }
                 // Gửi cho tất cả người chơi trong bán kính 24 block
-                const nearbyPlayers = dim.getPlayers({ location: player.location, maxDistance: 24 });
+                const nearbyPlayers = dim.getPlayers({ location: player.location, maxDistance: 48 });
                 for (const p of nearbyPlayers) {
                     p.sendMessage(reply);
                 }
@@ -650,7 +650,7 @@ try {
             if (msg.toLowerCase() === '!mob') {
                 event.cancel = true;
                 const dim = player.dimension;
-                const entities = dim.getEntities({ location: player.location, maxDistance: 24 });
+                const entities = dim.getEntities({ location: player.location, maxDistance: 48 });
                 const hostileTypes = ['zombie', 'skeleton', 'creeper', 'spider', 'witch', 'slime', 'enderman', 'phantom', 'pillager', 'vindicator', 'ravager', 'evoker', 'warden', 'wither', 'dragon', 'ghast', 'blaze', 'magma_cube', 'shulker', 'silverfish', 'cave_spider', 'husk', 'stray', 'drowned', 'zoglin', 'piglin_brute', 'hoglin', 'guardian', 'elder_guardian', 'vex', 'breeze'];
                 const hostileMap = {};
                 const passiveMap = {};
@@ -673,7 +673,7 @@ try {
                     for (const [n, c] of Object.entries(passiveMap).sort((a, b) => b[1] - a[1])) reply += `\u00a7a  \u2022 ${n.replace(/_/g, ' ')} x${c}\n`;
                 } else { reply += `\u00a7aSinh v\u1eadt l\u00e0nh: Kh\u00f4ng c\u00f3\n`; }
                 // Gửi cho tất cả người chơi trong bán kính 24 block
-                const nearbyPlayers = dim.getPlayers({ location: player.location, maxDistance: 24 });
+                const nearbyPlayers = dim.getPlayers({ location: player.location, maxDistance: 48 });
                 for (const p of nearbyPlayers) {
                     p.sendMessage(reply);
                 }
